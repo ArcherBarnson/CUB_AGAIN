@@ -1,0 +1,13 @@
+C 0,255,0
+F 0,0,255
+
+EA ./xpm/eagle.xpm
+SO ./xpm/greystone.xpm
+WE ./xpm/purplestone.xpm
+NO ./xpm/red.xpm
+
+11111
+11011
+10N01
+11011
+11111
