@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:05:19 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/21 06:47:54 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/21 09:50:14 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	init_player_data(t_game *g)
 		j = -1;
 		i++;
 	}
-	g->p->speed = 10;		//tmp arbitrary value
+	g->p->speed = TILE_SIZE / 2;		//tmp arbitrary value
 	return ;
 }

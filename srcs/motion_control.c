@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:33:11 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/21 05:23:04 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:24:52 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ void	change_player_position(t_game *g, int keycode)
 {
 	if (keycode == 3)
 	{
-		g->p->x = g->p->x + sin(angle_to_rad(g->p->direction));	
-		g->p->y = g->p->y - cos(angle_to_rad(g->p->direction));
+		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction));	
+		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 2)
 	{
-		g->p->x = g->p->x - sin(angle_to_rad(g->p->direction));	
-		g->p->y = g->p->y + cos(angle_to_rad(g->p->direction));
+		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction));	
+		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 1)
 	{
-		g->p->y = g->p->y + sin(angle_to_rad(g->p->direction));	
-		g->p->x = g->p->x + cos(angle_to_rad(g->p->direction));
+		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction));	
+		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 0)
 	{
-		g->p->y = g->p->y - sin(angle_to_rad(g->p->direction));	
-		g->p->x = g->p->x - cos(angle_to_rad(g->p->direction));
+		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction));	
+		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction));
 	}
 	if (player_in_wall(g, g->p->x, g->p->y))
 		reverse_player_position(g, keycode);
@@ -86,23 +86,23 @@ void	reverse_player_position(t_game *g, int keycode)
 {
 	if (keycode == 3)
 	{
-		g->p->x = g->p->x - sin(angle_to_rad(g->p->direction));	
-		g->p->y = g->p->y + cos(angle_to_rad(g->p->direction));
+		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction));	
+		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 2)
 	{
-		g->p->x = g->p->x + sin(angle_to_rad(g->p->direction));	
-		g->p->y = g->p->y - cos(angle_to_rad(g->p->direction));
+		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction));	
+		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 1)
 	{
-		g->p->y = g->p->y - sin(angle_to_rad(g->p->direction));	
-		g->p->x = g->p->x - cos(angle_to_rad(g->p->direction));
+		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction));	
+		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction));
 	}
 	if (keycode == 0)
 	{
-		g->p->y = g->p->y + sin(angle_to_rad(g->p->direction));	
-		g->p->x = g->p->x + cos(angle_to_rad(g->p->direction));
+		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction));	
+		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction));
 	}
 }
 
