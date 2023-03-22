@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 18:11:00 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:23:57 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ t_pos	*insert_rays(t_game *g)
 		p->tan = tan(deg_to_rad(p->rays));
 		check_horizontal(p , g);
 		check_vertical(p , g);
-		p->info = init_rays_info(p);
+		p->info = init_rays_info(p, g);
 		p->r += (float)(60 / (float)RES_X);
 		p->rays-= (float)(60 / (float)RES_X);
 		if (p->rays < 0)

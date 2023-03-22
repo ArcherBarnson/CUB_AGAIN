@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 18:35:12 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:31:11 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ typedef struct s_pos // raycasting struct
 	int			map_x;
 	int			map_p;
 	float		r;
-	int			dist_verti;
-	int			dist_hori;
+	float			dist_verti;
+	float			dist_hori;
 	int			len_y;
 	t_rays_info	*info;
 }	t_pos;
@@ -246,8 +246,8 @@ int			fix_ang(int	a);
 void		print_line(int x0, int y0, int x1, int y1, t_game *g, int color); // not important
 void		print_color_map(t_game *g, int x, int y); // not important
 t_pos		*insert_rays(t_game *g);
-void		smallest_dist(t_pos *p, t_rays_info *info);
-t_rays_info	*init_rays_info(t_pos *p);
+void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g);
+t_rays_info	*init_rays_info(t_pos *p, t_game *g);
 ///////////////////////////////
 #endif
 

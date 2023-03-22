@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 15:52:06 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:31:52 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,41 @@ int	fix_ang(int	a)
 	return (a);
 }
 
-void	smallest_dist(t_pos *p, t_rays_info *info)
+float	FixAng(float a)
 {
+	if(a > 359)
+		a -= 360;
+	if(a < 0)
+		a += 360;
+	return (a);
+}
+
+void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
+{
+	float r;
+
+	r = FixAng(g->p->direction - p->rays);
 	if (p->dist_verti > p->dist_hori)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
-		info->dist = p->dist_hori;
+		// info->dist = p->dist_hori;
+
+		info->dist = p->dist_hori * cos(deg_to_rad(r)) ;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST_2);
 	}
 	else
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
-		info->dist = p->dist_verti;
+		// info->dist = p->dist_verti;
+		info->dist = p->dist_verti* cos(deg_to_rad(r)) ;
+		// info->dist = cos(deg_to_rad(p->rays)) * p->dist_verti;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST);
 	}
 }
 
-t_rays_info	*init_rays_info(t_pos *p)
+t_rays_info	*init_rays_info(t_pos *p, t_game *g)
 {
 	t_rays_info	*tmp;
 	t_rays_info	*tmp_2;
@@ -53,7 +69,7 @@ t_rays_info	*init_rays_info(t_pos *p)
 	tmp_2 = p->info;
 	tmp->rays = p->rays;
 	tmp->wich_rays = p->r;
-	smallest_dist(p, tmp);
+	smallest_dist(p, tmp, g);
 	tmp->next = NULL;
 	if (tmp_2 == NULL)
 	{
