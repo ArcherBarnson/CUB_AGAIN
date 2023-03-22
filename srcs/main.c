@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:55:05 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/21 00:17:07 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:10:19 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	g = init_and_parse(ac, av[1]);
 	if (!g)
 		return (1);
-	g->win = mlx_new_window(g->mlx, 2000, 1500, "curs3d");
+	g->win = mlx_new_window(g->mlx, RES_X, RES_Y, "curs3d");
 	mlx_hooks(g);
 	mlx_loop(g->mlx);
 	//dbg_return = ft_parsing(g, av[1]);

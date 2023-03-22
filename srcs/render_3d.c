@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 16:54:40 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:17:10 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	render_image(t_game *g)
 		//else if (fi > M_PI)
 		//	fi -= M_PI;
 		if (p->info->pos_x >= p->info->pos_y)
-			color = GREEN;
+			color = RED;
 		else
 			color = RED;
 		slice.pos_x = i;
