@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:33:11 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 18:28:00 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:30:29 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ void	change_player_position(t_game *g, int keycode)
 {
 	if (keycode == 0)
 	{
-		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction));
-		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction));
+		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 1)
 	{
-		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction));	
-		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction));
+		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 2)
 	{
-		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction));	
-		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction));
+		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 3)
 	{
-		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction));	
-		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction));
+		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (player_in_wall(g, g->p->x, g->p->y))
 		reverse_player_position(g, keycode);
@@ -86,51 +86,51 @@ void	reverse_player_position(t_game *g, int keycode)
 {
 	if (keycode == 0)
 	{
-		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction));	
-		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction));
+		g->p->x = g->p->x - cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->y = g->p->y + sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 1)
 	{
-		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction));	
-		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction));
+		g->p->x = g->p->x + cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->y = g->p->y - sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 2)
 	{
-		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction));	
-		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction));
+		g->p->y = g->p->y - cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->x = g->p->x - sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 	if (keycode == 3)
 	{
-		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction));	
-		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction));
+		g->p->y = g->p->y + cos(deg_to_rad(g->p->direction)) * SPEED;
+		g->p->x = g->p->x + sin(deg_to_rad(g->p->direction)) * SPEED;
 	}
 }
 
 void	change_player_direction(t_game *g, int keycode)
 {
-	if (keycode == 4)
+	if (keycode == 5)
 	{
 		if (g->p->direction > 360)
 			g->p->direction = 0;
 		else
-			g->p->direction -= 5;
+			g->p->direction += 2;
 	}
-	if (keycode == 5)
+	if (keycode == 4)
 	{
 		if (g->p->direction < 0)
 			g->p->direction = 360;
 		else
-			g->p->direction += 5;
+			g->p->direction -= 2;
 	}
 }
 
 void	motion_control(t_game *gs, int keycode)
 {
-	if (keycode < 4 && keycode >= 0)
-		change_player_position(gs, keycode);
-	else
+	if (keycode == 4 || keycode == 5)
 		change_player_direction(gs, keycode);
-	printf("posx -> %f, posy -> %f\n\n\n\n\n\n", gs->p->x, gs->p->y);
+	else
+		change_player_position(gs, keycode);
+	//printf("posx -> %f, posy -> %f\n\n direction-> %f\n\n\n\n\n\n\n", gs->p->x, gs->p->y, gs->p->direction);
 }
 
 void	close_window(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 18:17:10 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:37:19 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	render_image(t_game *g)
 		//wall_size = (TILE_SIZE / (int)p->info->dist) * fisheye_fix;
 		//double k = 2000 / wall_size;
 		//double k = wall_size;
-		slice.wall_start = y_max / 2 - wall_size;
-		slice.wall_end = y_max / 2 + wall_size;
+		slice.wall_start = y_max / 2 - wall_size / 2;
+		slice.wall_end = y_max / 2 + wall_size / 2;
 		//slice.wall_start = y_max / 2 - wall_size;
 		//slice.wall_end = y_max / 2 + wall_size;
 		i++;

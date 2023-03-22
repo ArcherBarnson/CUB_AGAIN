@@ -6,7 +6,7 @@
 /*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 16:54:38 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:35:12 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define AC_NORMAL "\x1b[m"
 # define RES_X 1080
 # define RES_Y 720
+# define SPEED 6
 
 
 

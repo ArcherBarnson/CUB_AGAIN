@@ -6,11 +6,24 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:05:19 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 18:03:25 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:28:04 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	init_player_dir(char tile)
+{
+	if (tile == 'N')
+		return (90);
+	if (tile == 'S')
+		return (270);
+	if (tile == 'E')
+		return (0);
+	if (tile == 'W')
+		return (180);
+	return (1);
+}
 
 void	init_player_data(t_game *g)
 {
@@ -25,13 +38,15 @@ void	init_player_data(t_game *g)
 	{
 		while (g->m->map[i][++j])
 		{
-			if (g->m->map[i][j] == 'N')
+			if (g->m->map[i][j] == 'N' || g->m->map[i][j] == 'S'
+				|| g->m->map[i][j] == 'W'
+				|| g->m->map[i][j] == 'E')
 			{
 				g->p->x = j * TILE_SIZE;
 				g->p->x += TILE_SIZE / 2;
 				g->p->y = i * TILE_SIZE;
 				g->p->y += TILE_SIZE / 2;
-				g->p->direction = 90;
+				g->p->direction = init_player_dir(g->m->map[i][j]);
 			}
 		}
 		j = -1;
