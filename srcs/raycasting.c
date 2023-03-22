@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/20 23:11:08 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:37:41 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,13 @@ t_pos	*insert_rays(t_game *g)
 		check_horizontal(p , g);
 		check_vertical(p , g);
 		p->info = init_rays_info(p);
-		p->r += 0.1;
-		p->rays-= 0.1;
+		p->r += (float)(60 / (float)RES_X);
+		p->rays-= (float)(60 / (float)RES_X);
 		if (p->rays < 0)
 			p->rays = 359.9;
 		i++;
 	}
-	printf("------------DIST == %i ------------------\n", p->info->next->dist);
+	//printf("----i =  %d --&& 60 / RES_X)---- -----------\n", i);
+	printf("*********ray dist: %d\n***********", p->info->dist);
 	return (p);
 }

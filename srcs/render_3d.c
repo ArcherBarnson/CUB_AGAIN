@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 15:17:24 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:54:40 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	fill_image(t_game *g)				//debug funct
 
 void	render_image(t_game *g)
 {
-	int	x_max = 640;				//screen res width
-	int	y_max = 640;				//screen res height
+	int	x_max = RES_X;				//screen res width
+	int	y_max = RES_Y;				//screen res height
 	int	i = 0;
 	int	wall_size;
 	int	fisheye_fix;
@@ -63,7 +63,7 @@ void	render_image(t_game *g)
 	t_slice	slice;
 
 
-	g->img->img = mlx_new_image(g->mlx, 2000, 1500);
+	g->img->img = mlx_new_image(g->mlx, RES_X, RES_Y);
 	g->img->addr = mlx_get_data_addr(g->img->img, &g->img->bits_per_pixel, &g->img->line_length, &g->img->endian);
 	p = insert_rays(g);
 	if (p->info->dist <= 0)
@@ -80,24 +80,36 @@ void	render_image(t_game *g)
 		lol++;
 	}
 	printf("lol ---> %i\n\n\n", lol);*/
-	while (i <= x_max)
+	while (i < x_max - 1)
 	{
+		//double	test = (60 / (x_max - 1) * i) + (double)((double)g->p->direction - 30);
+		//if (test < 0)
+		//	test += 360 * M_PI / 180;
+		//double	fi = g->p->direction - test;
+		//if (fi < 0)
+		//	fi += M_PI;
+		//else if (fi > M_PI)
+		//	fi -= M_PI;
 		if (p->info->pos_x >= p->info->pos_y)
-			color = 0xb30000;
+			color = GREEN;
 		else
 			color = RED;
 		slice.pos_x = i;
 		draw_slice(g, &slice, color);
-		if (p->info->wich_rays == 60.0)
+		if (!p->info->next)
 			return ;
 		p->info = p->info->next;
 		if (p->info->dist <= 0)
 			p->info->dist = 1;
 		wall_size = ((y_max * TILE_SIZE) / (int)p->info->dist);
 		//wall_size = (TILE_SIZE / (int)p->info->dist) * fisheye_fix;
+		//double k = 2000 / wall_size;
+		//double k = wall_size;
 		slice.wall_start = y_max / 2 - wall_size;
 		slice.wall_end = y_max / 2 + wall_size;
-		i+=2;
+		//slice.wall_start = y_max / 2 - wall_size;
+		//slice.wall_end = y_max / 2 + wall_size;
+		i++;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
 }
