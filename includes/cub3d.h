@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 20:31:11 by leina            ###   ########.fr       */
+/*   Updated: 2023/03/24 18:08:45 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ typedef struct s_map		//map ids and tiles struct
 
 typedef struct s_textures
 {
-	void	*no_t;		//
-	void	*so_t;		//
-	void	*ea_t;		//
-	void	*we_t;		//
+	t_data	no_t;		//
+	t_data	so_t;		//
+	t_data	ea_t;		//
+	t_data	we_t;		//
 	int	f[3];
 	int	c[3];
 	int	fc[2];
