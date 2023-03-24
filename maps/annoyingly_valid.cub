@@ -1,10 +1,10 @@
 C 25,21,221
 F 255,255,255
 
-EA ./xpm/eagle.xpm
-SO ./xpm/greystone.xpm
-WE ./xpm/purplestone.xpm
-NO ./xpm/red.xpm
+EA ./assets/EA_test.xpm
+SO ./assets/SO_test.xpm
+WE ./assets/WE_test.xpm
+NO ./assets/NO_test.xpm
 
 111111111111111    111111111 
 10000010001001     100000001

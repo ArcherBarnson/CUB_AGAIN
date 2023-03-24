@@ -6,7 +6,7 @@
 #    By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:22:39 by bgrulois          #+#    #+#              #
-#    Updated: 2023/03/20 20:43:51 by bgrulois         ###   ########.fr        #
+#    Updated: 2023/03/22 19:32:25 by bgrulois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS	=	${LFT}/ft_strdup.c \
 		srcs/raycasting_utils.c \
 		srcs/main.c
 
-CC	=	gcc
+CC	=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror -g3
 

@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:53:19 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/14 18:05:17 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:38:54 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	load_textures(t_game *g)
 	free(g->m->so);
 	free(g->m->ea);
 	free(g->m->we);
-	//if (!g->t->no_t || !g->t->so_t || !g->t->ea_t || !g->t->we_t)
-	//	return (1);
+	if (!g->t->no_t || !g->t->so_t || !g->t->ea_t || !g->t->we_t)
+		return (1);
 	return (0);
 }
