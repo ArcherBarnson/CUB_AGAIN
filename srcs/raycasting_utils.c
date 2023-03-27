@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 20:31:52 by leina            ###   ########.fr       */
+/*   Updated: 2023/03/27 15:29:40 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 		info->pos_y = p->hori_y;
 		// info->dist = p->dist_hori;
 
-		info->dist = p->dist_hori * cos(deg_to_rad(r)) ;
+		info->dist = roundf(p->dist_hori * cos(deg_to_rad(r))) ;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST_2);
 	}
 	else
@@ -54,7 +54,7 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
 		// info->dist = p->dist_verti;
-		info->dist = p->dist_verti* cos(deg_to_rad(r)) ;
+		info->dist = roundf(p->dist_verti* cos(deg_to_rad(r))) ;
 		// info->dist = cos(deg_to_rad(p->rays)) * p->dist_verti;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST);
 	}
