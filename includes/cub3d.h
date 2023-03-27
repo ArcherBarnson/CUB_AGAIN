@@ -160,6 +160,7 @@ typedef struct s_slice
 	int	pos_x;
 	int	wall_start;
 	int	wall_end;
+	int	wall_pos;
 }		t_slice;
 
 typedef struct s_pos // raycasting struct

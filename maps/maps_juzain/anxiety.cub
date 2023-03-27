@@ -1,7 +1,8 @@
-NO ./srcs/textures/ultravisitor.xpm
-SO ./srcs/textures/ultravisitor.xpm
-WE ./srcs/textures/ultravisitor.xpm
-EA ./srcs/textures/ultravisitor.xpm
+
+NO ./assets/EA_test.xpm
+EA ./assets/EA_test.xpm
+WE ./assets/EA_test.xpm
+SO ./assets/EA_test.xpm
 
 F 88,185,71
 C 126,201,237
