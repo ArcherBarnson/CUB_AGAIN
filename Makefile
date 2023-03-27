@@ -1,26 +1,31 @@
+
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+         #
+#    By: leina <leina@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:22:39 by bgrulois          #+#    #+#              #
-#    Updated: 2023/03/22 19:32:25 by bgrulois         ###   ########.fr        #
+#    Updated: 2023/03/27 13:58:19 by leina            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	cub3d
 
-GNL	=	./gnl
+GNL	=	gnl
 
-LFT	=	./libft
+LFT=	libft
 
-SRCS	=	${LFT}/ft_strdup.c \
-		${LFT}/ft_atoi.c \
-		${GNL}/get_next_line_utils.c \
-		${GNL}/get_next_line.c \
-		srcs/memtools.c \
+OBJ_DIR = obj
+
+LFT_FILES = ${LFT}/ft_strdup.c \
+		${LFT}/ft_atoi.c
+
+GNL_FILES = ${GNL}/get_next_line_utils.c \
+		${GNL}/get_next_line.c
+SRCS_DIR = srcs
+SRCS	= srcs/memtools.c \
 		srcs/init.c \
 		srcs/floodfill_utils.c \
 		srcs/floodfill.c \
@@ -37,33 +42,41 @@ SRCS	=	${LFT}/ft_strdup.c \
 		srcs/raycasting_utils.c \
 		srcs/main.c
 
+ALL_FILES = $(LFT_FILES) \
+		$(GNL_FILES) \
+		$(SRCS)
+
+OBJ_LFT = $(addprefix $(OBJ_DIR)/,$(LFT))
+
+OBJ_GNL = $(addprefix $(OBJ_DIR)/,$(GNL))
+
+OBJ_SRCS = $(addprefix $(OBJ_DIR)/,$(SRCS_DIR))
+
 CC	=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g3
-
-OBJS	=	${SRCS:%.c=%.o}
+CFLAGS	=	-Wall -Wextra -Werror -g3 -I /usr/include -I mlx_linux
 
 all: 		${NAME}
 
-%.o:		%.c
-		$(CC) $(CFLAGS) -I /usr/include -I mlx_linux -c $< -o $@
+$(OBJ_DIR):		;
+	@mkdir -p $@
+	@mkdir -p $(OBJ_LFT)
+	@mkdir -p $(OBJ_GNL)
+	@mkdir -p $(OBJ_SRCS)
 
-#%.o:		%.c
-#		$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I /usr/include -I mlx_linux -c $< -o $@
 
-${NAME}: 	$(OBJS)
+OBJS = $(addprefix $(OBJ_DIR)/, $(ALL_FILES:.c=.o))
+
+${NAME}: $(OBJ_DIR)	$(OBJS)
 		make -C mlx_linux
 		${CC} ${CFLAGS} $(OBJS) -L mlx_linux -lmlx -L /usr/lib -I mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
-#${NAME}: 	$(OBJS)
-#		${CC} ${CFLAGS} $(OBJS) -o $(NAME)
-
 clean:
 		make clean -C mlx_linux
+		rm -rf ${OBJ_DIR}
 		rm -rf ${OBJS}
-
-#clean:
-#		rm -rf ${OBJS}
 
 fclean:		clean
 		rm -rf ${NAME}
