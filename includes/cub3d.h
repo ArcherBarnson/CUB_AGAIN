@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/30 04:19:25 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:41:08 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define AC_CYAN "\x1b[36m"
 # define AC_WHITE "\x1b[37m"
 # define AC_NORMAL "\x1b[m"
-# define RES_X 1080
+# define RES_X 1080 
 # define RES_Y 720
 # define SPEED 6
 
@@ -161,6 +161,7 @@ typedef struct s_slice
 	int	pos_x;
 	int	wall_start;
 	int	wall_end;
+	int	side;
 	float	wall_pos;
 }		t_slice;
 
