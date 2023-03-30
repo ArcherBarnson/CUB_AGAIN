@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/24 18:06:49 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:28:57 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,25 @@
 void	draw_slice(t_game *g, t_slice *slice)
 {
 	int	y;
-	//int	y_wall = 0;
-	int	color;
+	float	ratio = 0.0;
 
 	y = 0;
-	//Formule pour char *addr : X position * 4 + 4 * Line size * Y position. (Merci à grezette)
-	//color = g->t->no_t.addr[y * g->t->no_t.line_length / 4 + slice->pos_x];
-	//color = (y * g->t->no_t.line_length + slice->pos_x * (g->t->no_t.bits_per_pixel / 8));
-	color = (slice->wall_pos * TILE_SIZE / 100) * 4 + 4 * g->t->no_t.line_length * ((slice->wall_end - slice->wall_start) / TILE_SIZE);
+	ratio = (slice->wall_end - slice->wall_start) / TILE_SIZE_F;
+	if (ratio == 0.0)
+		ratio = 0.1;
+	if (ratio < 1.0 && ratio > 0.0)
+		ratio = 1 / ratio;
+	//printf("\n$$$$$$$$$$$$$$$$$$\nTXT_XPOS(px) = %f\nRATIO = %f\n$$$$$$$$$$$$$$$$$$\n", slice->wall_pos, ratio);
 	while (y < RES_Y)
 	{
 		if (y < slice->wall_start)
 			my_mlx_pixel_put(g->img, slice->pos_x, y, g->t->fc[1]);
-		else if (y >= slice->wall_start && y <= slice->wall_end)
+		else if (y > slice->wall_start && y <= slice->wall_end && slice->wall_pos != 0)
 		{
-			my_mlx_pixel_put(g->img, slice->pos_x, y, color);
-			//color = (y_wall * g->t->no_t.line_length + slice->pos_x * (g->t->no_t.bits_per_pixel / 8));
-			//y_wall++;
+			g->img->addr[y * 4 * g->img->line_length / 4 + slice->pos_x * 4] = g->t->no_t.addr[(int)((float)(y - slice->wall_start) / ratio) * g->t->no_t.line_length + ((int)slice->wall_pos * 4)];
 		}
 		else if (y > slice->wall_end)
 			my_mlx_pixel_put(g->img, slice->pos_x, y, g->t->fc[0]);
-		//color = slice->pos_x * 4 + 4 * g->t->no_t.line_length * y;
-		//color = g->t->no_t.addr[y * g->t->no_t.line_length / 4 + slice->pos_x];
-		color = (slice->wall_pos * TILE_SIZE / 100) * 4 + 4 * g->t->no_t.line_length * ((slice->wall_end - slice->wall_start) / TILE_SIZE);
 		y++;
 	}
 }
@@ -79,7 +75,7 @@ void	render_image(t_game *g)
 	while (i < RES_X - 1)
 	{
 		slice.pos_x = i;
-		draw_slice(g, &slice);
+		//printf("--------------------\nx = %i\n---------------------", slice.pos_x);
 		if (!p->info->next)
 			return ;
 		p->info = p->info->next;
@@ -87,13 +83,15 @@ void	render_image(t_game *g)
 			p->info->dist = 1;
 		wall_size = ((RES_Y * TILE_SIZE) / (int)p->info->dist);
 		////////////////////////wip/////////////////////////////
-		//if (p->info->pos_x <= p->info->pos_y)
-		slice.wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE) * 100 / TILE_SIZE;
+		slice.wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE) * 100.0 / TILE_SIZE_F;
+		printf("\n############wall_pos = %i\n###############\n", (int)slice.wall_pos);
 		//else
 		//	slice.wall_pos = (p->info->pos_y % TILE_SIZE) * 100 / TILE_SIZE;
 		////////////////////////////////////////////////////////
 		slice.wall_start = RES_Y / 2 - wall_size / 2;
 		slice.wall_end = RES_Y / 2 + wall_size / 2;
+		slice.wall_pos = slice.wall_pos * TILE_SIZE_F / 100.0;
+		draw_slice(g, &slice);
 		i++;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);

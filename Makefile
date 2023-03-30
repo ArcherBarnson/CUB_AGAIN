@@ -6,7 +6,7 @@
 #    By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:22:39 by bgrulois          #+#    #+#              #
-#    Updated: 2023/03/22 19:32:25 by bgrulois         ###   ########.fr        #
+#    Updated: 2023/03/29 22:54:30 by bgrulois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS	=	${LFT}/ft_strdup.c \
 		srcs/raycasting.c \
 		srcs/raycasting_utils.c \
 		srcs/main.c
+		#test/textures_test_main.c
 
 CC	=	cc
 

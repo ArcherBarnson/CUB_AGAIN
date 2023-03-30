@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/24 18:08:45 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:07:30 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define TEST 0xFFFFFFF
 # define TEST_2 0xFFFFF00
 # define TILE_SIZE	64
+# define TILE_SIZE_F	64.0
 # define ESC 		65307
 # define W 		119
 # define A 		97
@@ -160,7 +161,7 @@ typedef struct s_slice
 	int	pos_x;
 	int	wall_start;
 	int	wall_end;
-	int	wall_pos;
+	float	wall_pos;
 }		t_slice;
 
 typedef struct s_pos // raycasting struct
@@ -205,6 +206,7 @@ int	check_id_validity(t_game *g);
 int	get_id(t_game *g, int i);
 int	ft_parsing(t_game *g, char *filename);
 int	load_textures(t_game *g);
+t_game	*init_and_parse(int ac, char *map_file);
 //////////////////////////////////////////
 
 ////////FLOODFILL/////////////////////////

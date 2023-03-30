@@ -6,7 +6,7 @@
 /*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:22:32 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/20 23:12:32 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:04:38 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	get_n_cols(char *line)
 		i++;
 	return (i);
 }
-
+/*
 void	draw_scene(t_game *g)
 {
 	int	canvas_pos[2];
@@ -103,4 +103,4 @@ void	draw_scene(t_game *g)
 	my_mlx_pixel_put(g->img, (int)g->p->x, (int)g->p->y, GREEN);
 	insert_rays(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 50, 50);
-}
+}*/

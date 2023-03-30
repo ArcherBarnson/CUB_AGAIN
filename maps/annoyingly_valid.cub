@@ -1,5 +1,5 @@
-C 25,21,221
-F 255,255,255
+C 64,32,127
+F 64,127,32
 
 EA ./assets/EA_test.xpm
 SO ./assets/SO_test.xpm
