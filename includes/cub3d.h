@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/30 13:41:08 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:12:46 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define NO_ARG		"Error :\nBad number of arguments\nExiting...\n"
 # define IS_A_DIR	"Error :\nArgument is a directory\nExiting...\n"
 # define OPEN_ERROR	"Error :\nCould not open map_file\nCheck path and permissions\nExiting...\n"
+# define EMPTY_FILE	"Error :\nFile is empty or cannot be read\nExiting...\n"
 
 # define BAD_ID		"Error :\nInvalid identifier\nExiting...\n"
 # define MAP_ERR	"Error :\nInvalid map\nExiting...\n"

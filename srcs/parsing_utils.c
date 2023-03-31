@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 13:54:24 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/15 18:59:51 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:12:43 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ int	is_a_valid_tile(char tile)
 	return (0);
 }
 
+int	is_a_dir(char *filename)
+{
+	if (open(filename, O_DIRECTORY) > 0)
+	{
+		write(2, IS_A_DIR, 44);
+		return (1);
+	}
+	return (0);
+}
+
 char	**read_map(char *filename)
 {
 	int	map_fd;
@@ -66,14 +76,16 @@ char	**read_map(char *filename)
 	map_fd = 0;
 	i = -1;
 	raw_map = NULL;
-	if (!open(filename, O_DIRECTORY))
-		write(2, IS_A_DIR, 44);
+	if (is_a_dir(filename))
+		return (NULL);
 	map_fd = open(filename, O_RDONLY);
 	if (map_fd <= 0)
 		write(2, OPEN_ERROR, 71);
 	else
 	{
 		raw_map = alloc_raw_map(map_fd);
+		if (!raw_map)
+			return (write(2, EMPTY_FILE, ft_strlen(EMPTY_FILE)), NULL);
 		map_fd = open(filename, O_RDONLY);
 		raw_map[++i] = get_next_line(map_fd);
 		while (raw_map[i++] != NULL)

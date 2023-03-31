@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/30 13:46:40 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:47:19 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	draw_slice(t_game *g, t_slice *slice)
 	//tx = eval_tx_img(g, slice);
 	if (ratio <= 0.0)
 		ratio = 0.01;
-	if (ratio < 1.0 && ratio > 0.0)
-		ratio = 1.0 / ratio;
+	/*if (ratio < 1.0 && ratio > 0.0)
+		ratio = 1.0 / ratio;*/
 	//printf("\n$$$$$$$$$$$$$$$$$$\nTXT_XPOS(px) = %f\nRATIO = %f\n$$$$$$$$$$$$$$$$$$\n", slice->wall_pos, ratio);
 	while (y < RES_Y)
 	{
