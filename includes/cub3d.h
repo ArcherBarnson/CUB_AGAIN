@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/24 18:08:45 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:33:06 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,12 @@ typedef struct s_game		//main struct (keycodes, player_data and secondary struct
 typedef struct s_rays_info
 {
 	struct s_rays_info *prev;
-	float	rays;
-	float	wich_rays;
+	double	rays;
+	double	wich_rays;
 	int		dist;
 	int		pos_x;
 	int		pos_y;
+	int		side;
 	struct s_rays_info *next;
 }	t_rays_info;
 
@@ -164,22 +165,22 @@ typedef struct s_slice
 
 typedef struct s_pos // raycasting struct
 {
-	float		rays;
-	float		tan;
-	float		r_y;//to_remove
-	float		r_x;//to_remove
-	float		verti_y;
-	float		verti_x;
-	float		hori_y;
-	float		hori_x;
-	float		add_x;
-	float		add_y;
+	double		rays;
+	double		tan;
+	double		r_y;//to_remove
+	double		r_x;//to_remove
+	double		verti_y;
+	double		verti_x;
+	double		hori_y;
+	double		hori_x;
+	double		add_x;
+	double		add_y;
 	int			map_y;
 	int			map_x;
 	int			map_p;
-	float		r;
-	float			dist_verti;
-	float			dist_hori;
+	double		r;
+	double			dist_verti;
+	double			dist_hori;
 	int			len_y;
 	t_rays_info	*info;
 }	t_pos;
@@ -241,7 +242,7 @@ void	render_image(t_game *g);
 int		render_next_frame(t_game *gd);
 
 /////// RAYCASTING ////////////
-float		deg_to_rad(float	a);
+double		deg_to_rad(double	a);
 int			fix_ang(int	a);
 void		print_line(int x0, int y0, int x1, int y1, t_game *g, int color); // not important
 void		print_color_map(t_game *g, int x, int y); // not important

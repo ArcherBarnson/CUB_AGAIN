@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/27 15:29:40 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/04 13:33:31 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-float	deg_to_rad(float	a)
+double	deg_to_rad(double	a)
 {
 	return ((a * M_PI) / 180.0);
 }
@@ -26,7 +26,7 @@ int	fix_ang(int	a)
 	return (a);
 }
 
-float	FixAng(float a)
+double	FixAng(double a)
 {
 	if(a > 359)
 		a -= 360;
@@ -37,14 +37,14 @@ float	FixAng(float a)
 
 void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 {
-	float r;
+	double r;
 
 	r = FixAng(g->p->direction - p->rays);
 	if (p->dist_verti > p->dist_hori)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
-		// info->dist = p->dist_hori;
+		info->side = 1;
 
 		info->dist = roundf(p->dist_hori * cos(deg_to_rad(r))) ;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST_2);
@@ -53,7 +53,7 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
-		// info->dist = p->dist_verti;
+		info->side = 0;
 		info->dist = roundf(p->dist_verti* cos(deg_to_rad(r))) ;
 		// info->dist = cos(deg_to_rad(p->rays)) * p->dist_verti;
 		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST);

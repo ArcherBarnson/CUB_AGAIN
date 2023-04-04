@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 20:23:57 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/04 14:45:51 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	rays_dist_hori(t_pos *p, t_game *g)
 	if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
 		&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
 		{
-			p->dist_hori = sqrt(pow((int)g->p->x - p->hori_x, 2) \
-				+ pow((int)g->p->y - p->hori_y, 2));
+			// p->dist_hori = sqrt(pow((int)g->p->x - p->hori_x, 2) \
+			// 	+ pow((int)g->p->y - p->hori_y, 2));
+			p->dist_hori = cos(deg_to_rad(p->rays)) * (p->hori_x - g->p->x) - sin (deg_to_rad(p->rays)) * (p->hori_y - g->p->y);
 			return ;
 		}
 		p->hori_x += p->add_x;
@@ -52,8 +53,9 @@ void	rays_dist_verti(t_pos *p, t_game *g)
 	if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
 		&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
 		{
-			p->dist_verti = sqrt(pow((int)g->p->x - p->verti_x, 2) \
-				+ pow((int)g->p->y - p->verti_y, 2));
+			// p->dist_verti = sqrt(pow((int)g->p->x - p->verti_x, 2) \
+			// 	+ pow((int)g->p->y - p->verti_y, 2));
+			p->dist_verti = cos(deg_to_rad(p->rays)) * (p->verti_x - g->p->x) - sin (deg_to_rad(p->rays)) * (p->verti_y - g->p->y);
 			return ;
 		}
 		p->verti_x += p->add_x;
@@ -112,14 +114,14 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 t_pos	*insert_rays(t_game *g)
 {
 	t_pos		*p;
-	int	i;
+	int			i;
 
-	i = 0;
 	p = malloc(sizeof(t_pos));
 	p->info = NULL;
 	p->r = 0;
 	p->rays = fix_ang(g->p->direction+ 30);
 	p->len_y = get_tab_size(g->m->map);
+
 	while(p->r < 60)
 	{
 		p->dist_verti = 1000000;
@@ -128,8 +130,8 @@ t_pos	*insert_rays(t_game *g)
 		check_horizontal(p , g);
 		check_vertical(p , g);
 		p->info = init_rays_info(p, g);
-		p->r += (float)(60 / (float)RES_X);
-		p->rays-= (float)(60 / (float)RES_X);
+		p->r += (double)(60 / (double)RES_X);
+		p->rays-= (double)(60 / (double)RES_X);
 		if (p->rays < 0)
 			p->rays = 359.9;
 		i++;
