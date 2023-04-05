@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 20:31:52 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/05 18:55:24 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,16 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
-		// info->dist = p->dist_hori;
-
-		info->dist = p->dist_hori * cos(deg_to_rad(r)) ;
-		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST_2);
+		info->side = 1;
+		info->dist = roundf(p->dist_hori * cos(deg_to_rad(r)));
+		printf("Vx %f Vy %f | Hx %f Hy %f | Dv %f Dh %f\n", p->verti_x, p->verti_y, p->hori_x, p->hori_y, p->dist_verti, p->dist_hori);
 	}
 	else
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
-		// info->dist = p->dist_verti;
-		info->dist = p->dist_verti* cos(deg_to_rad(r)) ;
-		// info->dist = cos(deg_to_rad(p->rays)) * p->dist_verti;
-		//print_line((int)g->p->x, (int)g->p->y, info->pos_x, info->pos_y, g, TEST);
+		info->side = 0;
+		info->dist = roundf(p->dist_verti* cos(deg_to_rad(r)));
 	}
 }
 
@@ -94,11 +91,6 @@ void print_line(int x0, int y0, int x1, int y1, t_game *g, int color) // TO_REMO
    int dy = -abs(y1-y0), sy = y0<y1 ? 1 : -1;
    int err = dx+dy, e2; /* error value e_xy */
    while(1){  /* loop */
-//    if (x0 == 191)
-	// printf("x0 == %d et y0 = %d\n", x0, y0);
-	// if (x0 < 0 || y0 < 0)
-	// 	break ;
-      //my_mlx_pixel_put(g->img, x0, y0, color);
       if (x0==x1 && y0==y1)
 	   break;
       e2 = 2*err;

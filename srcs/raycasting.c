@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/03/22 20:23:57 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/05 19:11:11 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ void	check_horizontal(t_pos *p, t_game *g) // line blue   |
 	p->add_y = TILE_SIZE*(tan(deg_to_rad(p->rays)));
 	if ( p->rays > 90 && p->rays < 270)
 	{
-		p->hori_x = ((int)g->p->x/TILE_SIZE) * TILE_SIZE - 0.001;
-		p->hori_y = ((int)g->p->x-p->hori_x)*p->tan + (int)g->p->y;
+		p->hori_x = ((int)g->p->x / TILE_SIZE) * TILE_SIZE - 0.001;
+		p->hori_y = ((int)g->p->x - p->hori_x) * p->tan + (int)g->p->y;
 		p->add_x *= -1;
 	}
 	else
 	{
-		p->hori_x = ((int)g->p->x/TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-		p->hori_y = ((int)g->p->x-p->hori_x)*p->tan + (int)g->p->y;
+		p->hori_x = ((int)g->p->x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+		p->hori_y = ((int)g->p->x - p->hori_x) * p->tan + (int)g->p->y;
 		p->add_y *= -1;
 	}
 	rays_dist_hori(p, g);
@@ -90,13 +90,13 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 	if (sin(deg_to_rad(p->rays)) > 0.001) //haut
 	{
 		p->verti_y = ((int)g->p->y / TILE_SIZE) * TILE_SIZE - 0.001;
-		p->verti_x = (int)g->p->x + ((int)g->p->y - (int)p->verti_y) / p->tan;
+		p->verti_x = ((int)g->p->y - p->verti_y) / p->tan + (int)g->p->x;
 		p->add_y *= -1;
 	}
 	else if (sin(deg_to_rad(p->rays)) < -0.001) //bas
 	{
 		p->verti_y = ((int)g->p->y/TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-		p->verti_x = ((int)g->p->y - p->verti_y)/p->tan + (int)g->p->x;
+		p->verti_x = ((int)g->p->y - p->verti_y) / p->tan + (int)g->p->x;
 		p->add_x *= -1;
 	}
 	else
@@ -120,6 +120,7 @@ t_pos	*insert_rays(t_game *g)
 	p->r = 0;
 	p->rays = fix_ang(g->p->direction+ 30);
 	p->len_y = get_tab_size(g->m->map);
+	printf("b\n");
 	while(p->r < 60)
 	{
 		p->dist_verti = 1000000;
