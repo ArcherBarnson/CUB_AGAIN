@@ -6,54 +6,53 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/05 18:55:24 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/06 16:00:46 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-float	deg_to_rad(float	a)
+float	deg_to_rad(float a)
 {
 	return ((a * M_PI) / 180.0);
 }
 
-int	fix_ang(int	a)
+int	fix_ang(int a)
 {
-	if(a > 359)
+	if (a > 359)
 		a -= 360;
-	if(a < 0)
+	if (a < 0)
 		a += 360;
 	return (a);
 }
 
-float	FixAng(float a)
+float	fixang(float a)
 {
-	if(a > 359)
+	if (a > 359)
 		a -= 360;
-	if(a < 0)
+	if (a < 0)
 		a += 360;
 	return (a);
 }
 
 void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 {
-	float r;
+	float	r;
 
-	r = FixAng(g->p->direction - p->rays);
+	r = fixang(g->p->direction - p->rays);
 	if (p->dist_verti > p->dist_hori)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
 		info->side = 1;
 		info->dist = roundf(p->dist_hori * cos(deg_to_rad(r)));
-		printf("Vx %f Vy %f | Hx %f Hy %f | Dv %f Dh %f\n", p->verti_x, p->verti_y, p->hori_x, p->hori_y, p->dist_verti, p->dist_hori);
 	}
 	else
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
 		info->side = 0;
-		info->dist = roundf(p->dist_verti* cos(deg_to_rad(r)));
+		info->dist = roundf(p->dist_verti * cos(deg_to_rad(r)));
 	}
 }
 

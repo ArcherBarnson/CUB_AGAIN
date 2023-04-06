@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/05 19:11:11 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/06 15:59:13 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ void	rays_dist_hori(t_pos *p, t_game *g)
 	{
 		p->map_x = (p->hori_x / TILE_SIZE);
 		p->map_y = (p->hori_y / TILE_SIZE);
-		p->map_p = p->map_x*10+p->map_y;
-	if (p->map_p > 0 && (p->map_y >= p->len_y
-		|| (p->map_y < p->len_y && p->map_x >=
-			ft_strlen(g->m->map[p->map_y])- 1)))
-		return ;
-	if (p->rays == 0.0)
-		printf("0000000 pos x %f pos y %f\n", p->hori_x, p->hori_y);
-	if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
-		&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
+		p->map_p = p->map_x * 10 + p->map_y;
+		if (p->map_p > 0 && (p->map_y >= p->len_y
+				|| (p->map_y < p->len_y && p->map_x
+					>= ft_strlen(g->m->map[p->map_y]) - 1)))
+			return ;
+		if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
+			&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
 		{
 			p->dist_hori = sqrt(pow((int)g->p->x - p->hori_x, 2) \
 				+ pow((int)g->p->y - p->hori_y, 2));
@@ -44,13 +42,13 @@ void	rays_dist_verti(t_pos *p, t_game *g)
 	{
 		p->map_x = (p->verti_x / TILE_SIZE);
 		p->map_y = (p->verti_y / TILE_SIZE);
-		p->map_p = p->map_x*10+p->map_y;
-	if (p->map_p > 0 && (p->map_y >= p->len_y
-		|| (p->map_y < p->len_y && p->map_x >=
-			ft_strlen(g->m->map[p->map_y])- 1)))
-		return ;
-	if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
-		&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
+		p->map_p = p->map_x * 10 + p->map_y;
+		if (p->map_p > 0 && (p->map_y >= p->len_y
+				|| (p->map_y < p->len_y && p->map_x
+					>= ft_strlen(g->m->map[p->map_y]) - 1)))
+			return ;
+		if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
+			&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
 		{
 			p->dist_verti = sqrt(pow((int)g->p->x - p->verti_x, 2) \
 				+ pow((int)g->p->y - p->verti_y, 2));
@@ -66,7 +64,7 @@ void	check_horizontal(t_pos *p, t_game *g) // line blue   |
 {
 	p->add_x = TILE_SIZE;
 	p->map_p = 10;
-	p->add_y = TILE_SIZE*(tan(deg_to_rad(p->rays)));
+	p->add_y = TILE_SIZE * (tan(deg_to_rad(p->rays)));
 	if ( p->rays > 90 && p->rays < 270)
 	{
 		p->hori_x = ((int)g->p->x / TILE_SIZE) * TILE_SIZE - 0.001;
@@ -86,7 +84,7 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 {
 	p->add_y = TILE_SIZE;
 	p->map_p = 10;
-	p->add_x = TILE_SIZE/(tan(deg_to_rad(p->rays)));
+	p->add_x = TILE_SIZE / (tan(deg_to_rad(p->rays)));
 	if (sin(deg_to_rad(p->rays)) > 0.001) //haut
 	{
 		p->verti_y = ((int)g->p->y / TILE_SIZE) * TILE_SIZE - 0.001;
@@ -95,7 +93,7 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 	}
 	else if (sin(deg_to_rad(p->rays)) < -0.001) //bas
 	{
-		p->verti_y = ((int)g->p->y/TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+		p->verti_y = ((int)g->p->y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
 		p->verti_x = ((int)g->p->y - p->verti_y) / p->tan + (int)g->p->x;
 		p->add_x *= -1;
 	}
@@ -111,17 +109,15 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 
 t_pos	*insert_rays(t_game *g)
 {
-	t_pos		*p;
-	int	i;
+	t_pos	*p;
 
-	i = 0;
 	p = malloc(sizeof(t_pos));
 	p->info = NULL;
 	p->r = 0;
-	p->rays = fix_ang(g->p->direction+ 30);
+	p->rays = fix_ang(g->p->direction + 30);
 	p->len_y = get_tab_size(g->m->map);
 	printf("b\n");
-	while(p->r < 60)
+	while (p->r < 60)
 	{
 		p->dist_verti = 1000000;
 		p->dist_hori = 1000000;
@@ -130,10 +126,9 @@ t_pos	*insert_rays(t_game *g)
 		check_vertical(p , g);
 		p->info = init_rays_info(p, g);
 		p->r += (float)(60 / (float)RES_X);
-		p->rays-= (float)(60 / (float)RES_X);
+		p->rays -= (float)(60 / (float)RES_X);
 		if (p->rays < 0)
 			p->rays = 359.9;
-		i++;
 	}
 	return (p);
 }
