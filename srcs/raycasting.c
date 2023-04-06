@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/06 15:59:13 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/06 16:53:01 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_pos	*insert_rays(t_game *g)
 	p->r = 0;
 	p->rays = fix_ang(g->p->direction + 30);
 	p->len_y = get_tab_size(g->m->map);
-	printf("b\n");
+	printf("begin\n");
 	while (p->r < 60)
 	{
 		p->dist_verti = 1000000;
