@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/05 18:48:08 by leina            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:12:46 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@
 # define AC_CYAN "\x1b[36m"
 # define AC_WHITE "\x1b[37m"
 # define AC_NORMAL "\x1b[m"
-# define RES_X 1080
+# define RES_X 1080 
 # define RES_Y 720
-# define SPEED 8
+# define SPEED 6
 
 
 
@@ -154,7 +154,6 @@ typedef struct s_rays_info
 	int		dist;
 	int		pos_x;
 	int		pos_y;
-	int		side;
 	struct s_rays_info *next;
 }	t_rays_info;
 

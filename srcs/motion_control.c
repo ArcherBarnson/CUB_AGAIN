@@ -14,7 +14,7 @@
 
 double	angle_to_rad(double angle)
 {
-	printf("angle %f == \nrad == %f\n\n", angle, angle * (M_PI / 180));
+	//printf("angle %f == \nrad == %f\n\n", angle, angle * (M_PI / 180));
 	return (angle * (M_PI / 180));
 }
 
@@ -79,7 +79,7 @@ void	change_player_position(t_game *g, int keycode)
 	}
 	if (player_in_wall(g, g->p->x, g->p->y))
 		reverse_player_position(g, keycode);
-	printf("dir : %f\n", g->p->direction);
+	//printf("dir : %f\n", g->p->direction);
 }
 
 void	reverse_player_position(t_game *g, int keycode)

@@ -1,13 +1,15 @@
-C 0,255,0
-F 0,0,255
+C 9,9,15
+F 100,20,29
 
-NO ./assets/NO_test.xpm
+NO ./assets/giant.xpm
 SO ./assets/NO_test.xpm
-EA ./assets/NO_test.xpm
-WE ./assets/NO_test.xpm
+EA ./assets/giant.xpm
+WE ./assets/giant.xpm
 
-11111
-11011
-10N01
-11011
-11111
+11111111111111
+10000000000001
+10000000000001
+10000000000001
+10000000000001
+1000000N000001
+11111111111111

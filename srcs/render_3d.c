@@ -38,10 +38,14 @@ void	draw_slice(t_game *g, t_slice *slice)
 	int	y;
 	double	ratio;
 	int i;
-	//t_data	*tx;
+	t_data	*tx;
 
 	y = 0;
 	ratio = (slice->wall_end - slice->wall_start) / TILE_SIZE_F;
+	if (slice->side == 0)
+		tx = &g->t->no_t;
+	else if (slice->side == 1)
+		tx = &g->t->so_t;
 	//tx = eval_tx_img(g, slice);
 	if (ratio <= 0.0)
 		ratio = 0.01;
@@ -58,7 +62,7 @@ void	draw_slice(t_game *g, t_slice *slice)
 			while (i < 4)
 			{
 				g->img->addr[y * g->img->line_length + slice->pos_x * 4 + i] =
-					g->t->so_t.addr[eval_t_y(y, slice->wall_start, ratio)
+					tx->addr[eval_t_y(y, slice->wall_start, ratio)
 					* g->t->so_t.line_length + (int)(slice->wall_pos) * 4 + i];
 				i++;
 			}
@@ -72,22 +76,19 @@ void	draw_slice(t_game *g, t_slice *slice)
 void	init_slice(t_game *g, t_slice *slice, t_pos *p, int i)
 {
 	int	wall_size;
+	(void)g;
 
-	wall_size = ((RES_Y * TILE_SIZE) / (int)p->info->dist);
+	wall_size = ((RES_Y * TILE_SIZE) / p->info->dist);
 	slice->pos_x = i;
-	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE) * 100.0 / TILE_SIZE_F;
+	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + );
 	slice->wall_start = RES_Y / 2 - wall_size / 2;
 	slice->wall_end = RES_Y / 2 + wall_size / 2;
-	slice->wall_pos = slice->wall_pos * TILE_SIZE_F / 100.0;
-	if (p->info->wich_rays > 300)
-		slice->side = (int)((g->p->direction * 10.0) + ((double)p->info->wich_rays) / 10.0);
-	else if (p->info->wich_rays < 300)
-		slice->side = (int)((g->p->direction * 10.0) - ((double)p->info->wich_rays) / 10.0);
+	if (p->info->side == 0)
+		slice->side = 0;
 	else
-		slice->side = (int)g->p->direction;
-	slice->side /= 900;
+		slice->side = 1;
 	///UN PEU NUL TT CA
-	printf("!! side = %i!! \n", slice->side);
+	//printf("!! side = %i!! \n", slice->side);
 
 }
 
@@ -107,16 +108,16 @@ void	render_image(t_game *g)
 		p->info->dist = 1;
 	init_slice(g, &slice, p, i);
 	draw_slice(g, &slice);
-	while (i < RES_X - 1)
+	while (++i < RES_X - 1)
 	{
 		if (!p->info->next)
 			return ;
 		p->info = p->info->next;
-		if (p->info->dist <= 0)
+		//if (p->info->side == 0)
+		if (p->info->dist == 0)
 			p->info->dist = 1;
 		init_slice(g, &slice, p, i);
 		draw_slice(g, &slice);
-		i++;
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
 }

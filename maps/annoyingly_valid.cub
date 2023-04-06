@@ -2,7 +2,7 @@ C 64,32,127
 F 64,127,32
 
 EA ./assets/EA_test.xpm
-SO ./assets/SO_test.xpm
+SO ./assets/NO_test2.xpm
 WE ./assets/WE_test.xpm
 NO ./assets/NO_test.xpm
 
