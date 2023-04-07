@@ -19,8 +19,34 @@ int	eval_t_y(int y, int ws, double ratio)
 	t_y = (double)(y - ws) / ratio;
 	return ((int)t_y);
 }
-/*
-t_data	*eval_tx_img(t_game *g, t_slice *slice)
+
+int	fix_ang_d(int a)
+{
+	//printf("a = %d", a);
+	if (a > 359)
+		a -= 360;
+	if (a < 0)
+		a += 360;
+	//printf("a = %d", a);
+	return (a);
+}
+
+t_data	*eval_tx_img(t_game *g)
+{
+	printf("direct= %f\n", g->p->direction);
+	if (fix_ang(g->p->direction) > 45 && fix_ang(g->p->direction) <= 135)
+		return (&g->t->no_t);
+	if (fix_ang(g->p->direction) > 135 && fix_ang(g->p->direction) <= 225)
+		return (&g->t->we_t);
+	if (fix_ang(g->p->direction) > 225 && fix_ang(g->p->direction) <= 315)
+		return (&g->t->so_t);
+	if (fix_ang_d(g->p->direction) > 315 && fix_ang_d(g->p->direction) <= 45)
+		return (&g->t->ea_t);
+	return (NULL);
+}
+
+
+t_data	*eval_tx_side(t_game *g, t_slice *slice)
 {
 	if (slice->side == 0)
 		return (&g->t->no_t);
@@ -32,7 +58,7 @@ t_data	*eval_tx_img(t_game *g, t_slice *slice)
 		return (&g->t->ea_t);
 	return (NULL);
 }
-*/
+
 void	draw_slice(t_game *g, t_slice *slice)
 {
 	int	y;
@@ -42,11 +68,11 @@ void	draw_slice(t_game *g, t_slice *slice)
 
 	y = 0;
 	ratio = (slice->wall_end - slice->wall_start) / TILE_SIZE_F;
-	if (slice->side == 0)
-		tx = &g->t->no_t;
-	else if (slice->side == 1)
-		tx = &g->t->so_t;
-	//tx = eval_tx_img(g, slice);
+	//if (slice->side == 0)
+	//	tx = &g->t->no_t;
+	//else if (slice->side == 1)
+	//	tx = &g->t->so_t;
+	tx = eval_tx_side(g, slice);
 	if (ratio <= 0.0)
 		ratio = 0.01;
 	/*if (ratio < 1.0 && ratio > 0.0)
@@ -80,7 +106,7 @@ void	init_slice(t_game *g, t_slice *slice, t_pos *p, int i)
 
 	wall_size = ((RES_Y * TILE_SIZE) / p->info->dist);
 	slice->pos_x = i;
-	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + );
+	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + 1);
 	slice->wall_start = RES_Y / 2 - wall_size / 2;
 	slice->wall_end = RES_Y / 2 + wall_size / 2;
 	if (p->info->side == 0)

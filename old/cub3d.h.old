@@ -56,9 +56,9 @@
 # define AC_CYAN "\x1b[36m"
 # define AC_WHITE "\x1b[37m"
 # define AC_NORMAL "\x1b[m"
-# define RES_X 1080
-# define RES_Y 720
-# define SPEED 6
+# define RES_X 1480
+# define RES_Y 960
+# define SPEED 8
 
 
 
@@ -256,3 +256,4 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g);
 t_rays_info	*init_rays_info(t_pos *p, t_game *g);
 ///////////////////////////////
 #endif
+
