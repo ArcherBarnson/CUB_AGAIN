@@ -193,8 +193,15 @@ typedef struct s_pos // raycasting struct
 int	get_n_lines(int fd);
 char	**alloc_raw_map(int fd);
 int	is_a_valid_tile(char tile);
+int	is_a_dir(char *filename);
 char	**read_map(char *filename);
 char	**get_map(char **raw_map);
+//////////////////////////////////////////
+
+////////MEMORY	//////////////////////////
+t_game	*init_failure(t_game *g);
+void	free_floodfill(int *sc, int *bc, char **pos_map);
+void	exit_game(t_game *g);
 //////////////////////////////////////////
 
 ////////PARSING //////////////////////////
@@ -217,9 +224,9 @@ int	get_tab_size(char **tab);					//put that shit in utils
 int	*get_player_coords(char **map);
 int	*get_bounds_coords(char **map);
 char	**init_pos_map(char **map);
+int	flood(char **map, char **pos_map, int *p_pos, int *bounds_coords);
 int	flood_x(char **map, char **pos_map, int *p_pos, int *bounds_coords);
 int	flood_y(char **map, char **pos_map, int *p_pos, int *bounds_coords);
-int	flood(char **map, char **pos_map, int *p_pos, int *bounds_coords);
 int	floodfill(char **map);
 //////////////////////////////////////////
 

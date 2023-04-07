@@ -30,11 +30,11 @@ void	init_player_data(t_game *g)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = -1;
 	if (!g || !g->m)
 		return ;
-	while (g->m->map[i])
+	while (g->m->map[++i])
 	{
 		while (g->m->map[i][++j])
 		{
@@ -42,15 +42,12 @@ void	init_player_data(t_game *g)
 				|| g->m->map[i][j] == 'W'
 				|| g->m->map[i][j] == 'E')
 			{
-				g->p->x = j * TILE_SIZE;
-				g->p->x += TILE_SIZE / 2;
-				g->p->y = i * TILE_SIZE;
-				g->p->y += TILE_SIZE / 2;
+				g->p->x = j * TILE_SIZE + TILE_SIZE / 2;
+				g->p->y = i * TILE_SIZE + TILE_SIZE / 2;
 				g->p->direction = init_player_dir(g->m->map[i][j]);
 			}
 		}
 		j = -1;
-		i++;
 	}
 	g->p->speed = TILE_SIZE / 2;		//tmp arbitrary value
 	return ;

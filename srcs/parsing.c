@@ -10,22 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
-
-/*void	debug_display(t_game *g)
-{
-	int	i;
-
-	i = -1;
-	//printf("%s\n%s\n%s\n%s\n%s%s\n", g->m->no, g->m->so, g->m->ea, g->m->we, g->m->f, g->m->c);
-	write(1, "MAP:\n", 5);
-	while (g->m->map && g->m->map[++i] != NULL)
-		printf("%s\n", g->m->map[i]);
-	//printf("F -> %i %i %i\nC -> %i %i %i\n", g->t->f[0], g->t->f[1], g->t->f[2], g->t->c[0], g->t->c[1], g->t->c[2]);
-	//while (g->raw_map && g->raw_map[++i] != NULL)
-	//	printf("%s\n", g->raw_map[i]);
-	return ;
-}*/
+#include "../includes/cub3d.h"
 
 int	check_extension(char *file)
 {
@@ -35,8 +20,8 @@ int	check_extension(char *file)
 	while (file && file[i])
 		i++;
 	i--;
-	if (file[i] == 'b' && file[i - 1] == 'u' &&
-		file[i - 2] == 'c' && file[i - 3] == '.')
+	if (file[i] == 'b' && file[i - 1] == 'u'
+		&& file[i - 2] == 'c' && file[i - 3] == '.')
 		return (0);
 	return (1);
 }
@@ -118,7 +103,7 @@ int	check_tiles(char **map)
 	return (0);
 }
 
-int	ft_parsing(t_game *g, char *filename)	//assuming all vars & structs are already init
+int	ft_parsing(t_game *g, char *filename)
 {
 	if (check_extension(filename) != 0)
 	{

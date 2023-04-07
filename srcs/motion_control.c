@@ -79,7 +79,6 @@ void	change_player_position(t_game *g, int keycode)
 	}
 	if (player_in_wall(g, g->p->x, g->p->y))
 		reverse_player_position(g, keycode);
-	//printf("dir : %f\n", g->p->direction);
 }
 
 void	reverse_player_position(t_game *g, int keycode)
@@ -135,8 +134,10 @@ void	motion_control(t_game *gs, int keycode)
 
 void	close_window(t_game *g)
 {
+	exit_game(g);
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
+	free(g);
 }
 
 int	keyboard_ctl_on(int keycode, t_game *gs)

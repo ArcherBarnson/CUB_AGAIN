@@ -12,6 +12,43 @@
 
 #include "../includes/cub3d.h"
 
+void	exit_game(t_game *g)
+{
+	free(g->m);
+	mlx_destroy_image(g->mlx, g->t->no_t.img);
+	mlx_destroy_image(g->mlx, g->t->so_t.img);
+	mlx_destroy_image(g->mlx, g->t->ea_t.img);
+	mlx_destroy_image(g->mlx, g->t->we_t.img);
+	free(g->t);
+	free(g->p);
+	//mlx_destroy_image(g->mlx, g->img);
+}
+
+void	free_floodfill(int *sc, int *bc, char **pos_map)
+{
+	free(sc);
+	free(bc);
+	free_tab(pos_map);
+}
+
+t_game	*init_failure(t_game *g)
+{
+	if (g != NULL)
+	{
+		if (g->m != NULL)
+			free(g->m);
+		if (g->t != NULL)
+			free(g->t);
+		if (g->p != NULL)
+			free(g->p);
+		if (g->img != NULL)
+			free(g->img);
+	}
+	return (NULL);
+}
+
+
+
 void	free_tab(char **tab)
 {
 	int	i;

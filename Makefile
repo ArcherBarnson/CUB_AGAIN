@@ -27,8 +27,10 @@ SRCS_DIR = srcs
 SRCS	= srcs/memtools.c \
 		srcs/init.c \
 		srcs/floodfill_utils.c \
+		srcs/floodfill_sub.c \
 		srcs/floodfill.c \
-		srcs/parsing_utils.c \
+		srcs/parsing_utils_ints.c \
+		srcs/parsing_utils_mallocs.c \
 		srcs/parsing_identifiers.c \
 		srcs/parsing_colors.c \
 		srcs/parsing.c \

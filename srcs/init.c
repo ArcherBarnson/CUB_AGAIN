@@ -12,9 +12,38 @@
 
 #include "../includes/cub3d.h"
 
+void	init_s_map(t_map *m)
+{
+	m->no = NULL;
+	m->so = NULL;
+	m->ea = NULL;
+	m->we = NULL;
+	m->f = NULL;
+	m->c = NULL;
+	m->map = NULL;
+}
+
+int	init_substructs(t_game *g)
+{
+	g->m = malloc(sizeof(t_map));
+	if (!g->m)
+		return (0);
+	init_s_map(g->m);
+	g->t = malloc(sizeof(t_textures));
+	if (!g->t)
+		return (0);
+	g->p = malloc(sizeof(t_player));
+	if (!g->p)
+		return (0);
+	g->img = malloc(sizeof(t_data));
+	if (!g->img)
+		return (0);
+	return (1);
+}
+
 t_game	*init(void)
 {
-	t_game *g;
+	t_game	*g;
 
 	g = malloc(sizeof(t_game));
 	if (!g)
@@ -26,23 +55,13 @@ t_game	*init(void)
 	g->keycode_l = LEFT;
 	g->keycode_r = RIGHT;
 	g->raw_map = NULL;
-	g->m = malloc(sizeof(t_map));
-	if (!g->m)
-	{
-		free(g->m);		//free all
-		free(g);
-		return (NULL);
-	}
-	g->t = malloc(sizeof(t_textures));
-	if (!g->t)
-		return (NULL);		//free all
-	g->p = malloc(sizeof(t_player));
-	if (!g->p)
-		return (NULL);		//free all
+	g->m = NULL;
+	g->t = NULL;
+	g->p = NULL;
+	g->img = NULL;
 	g->mlx = NULL;
-	g->img = malloc(sizeof(t_data));
-	if (!g->img)
-		return (NULL);
-	//g->win = NULL;
+	g->win = NULL;
+	if (!init_substructs(g))
+		return (init_failure(g));
 	return (g);
 }
