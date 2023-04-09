@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/05 18:48:08 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/09 16:52:54 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,23 +129,6 @@ typedef struct s_textures
 	int	height;
 }		t_textures;
 
-typedef struct s_game		//main struct (keycodes, player_data and secondary structs)
-{
-	int			keycode_w;
-	int			keycode_a;
-	int			keycode_s;
-	int			keycode_d;
-	int			keycode_l;
-	int			keycode_r;
-	char			**raw_map;
-	t_map		*m;
-	t_textures	*t;
-	void		*mlx;
-	void		*win;
-	t_player	*p;
-	t_data		*img;		//might be useful for later (NOT THE TEXTURES IMAGES)
-}		t_game;
-
 typedef struct s_rays_info
 {
 	struct s_rays_info *prev;
@@ -157,15 +140,6 @@ typedef struct s_rays_info
 	int		side;
 	struct s_rays_info *next;
 }	t_rays_info;
-
-typedef struct s_slice
-{
-	int	pos_x;
-	int	wall_start;
-	int	wall_end;
-	int	side;
-	float	wall_pos;
-}		t_slice;
 
 typedef struct s_pos // raycasting struct
 {
@@ -183,11 +157,38 @@ typedef struct s_pos // raycasting struct
 	int			map_x;
 	int			map_p;
 	float		r;
-	float			dist_verti;
-	float			dist_hori;
+	float		dist_verti;
+	float		dist_hori;
 	int			len_y;
 	t_rays_info	*info;
 }	t_pos;
+
+typedef struct s_game		//main struct (keycodes, player_data and secondary structs)
+{
+	int			keycode_w;
+	int			keycode_a;
+	int			keycode_s;
+	int			keycode_d;
+	int			keycode_l;
+	int			keycode_r;
+	char		**raw_map;
+	t_map		*m;
+	t_textures	*t;
+	void		*mlx;
+	void		*win;
+	t_player	*p;
+	t_data		*img;		//might be useful for later (NOT THE TEXTURES IMAGES)
+	t_pos		*pos;
+}		t_game;
+
+typedef struct s_slice
+{
+	int	pos_x;
+	int	wall_start;
+	int	wall_end;
+	int	side;
+	float	wall_pos;
+}		t_slice;
 
 ////////UTILS  ///////////////////////////
 int	get_n_lines(int fd);
@@ -251,9 +252,11 @@ float		deg_to_rad(float	a);
 int			fix_ang(int	a);
 void		print_line(int x0, int y0, int x1, int y1, t_game *g, int color); // not important
 void		print_color_map(t_game *g, int x, int y); // not important
-t_pos		*insert_rays(t_game *g);
-void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g);
+// t_pos		*insert_rays(t_game *g);
+void	insert_rays(t_game *g);
+void		smallest_dist(t_pos *p, t_rays_info *info, t_game *g);
 t_rays_info	*init_rays_info(t_pos *p, t_game *g);
+void		free_rays_info(t_rays_info *info);
 ///////////////////////////////
 #endif
 

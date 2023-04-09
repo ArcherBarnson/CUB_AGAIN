@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render2d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:22:32 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/29 22:04:38 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/09 16:42:39 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	render_next_frame(t_game *g)
 {
 	//draw_scene(g);
-	insert_rays(g);
+	// insert_rays(g);
 	render_image(g);
 	mlx_destroy_image(g->mlx, g->img->img);
 	g->img->img = NULL;

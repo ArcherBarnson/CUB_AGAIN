@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/06 16:00:46 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/09 17:24:36 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,22 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
-		info->side = 1;
+		// info->side = 1;
+		if (p->rays < 270 && p->rays > 90)
+			info->side = 3;
+		else
+			info->side = 2;
 		info->dist = roundf(p->dist_hori * cos(deg_to_rad(r)));
 	}
 	else
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
-		info->side = 0;
+		// info->side = 0;
+		if (p->rays < 180 && p->rays > 0)
+			info->side = 0;
+		else
+			info->side = 1;
 		info->dist = roundf(p->dist_verti * cos(deg_to_rad(r)));
 	}
 }
@@ -113,9 +121,37 @@ void print_color_map(t_game *g, int x, int y) // TO_REMOVE
 				printf("%s%c %s",AC_GREEN, g->m->map[i][a], AC_NORMAL);
 			else
 				printf("%c ",g->m->map[i][a]);
-			a++;
+			a++;	// if (fix_ang(p->rays) > 45 && fix_ang(p->rays) <= 135)
+	// 	slice->side = 0;
+	// else if (fix_ang(p->rays) > 135 && fix_ang(p->rays) <= 225)
+	// 	slice->side = 1;
+	// else if (fix_ang(p->rays) > 225 && fix_ang(p->rays) <= 315)
+	// 	slice->side = 2;
+	// else if (fix_ang_d(p->rays) > 315 && fix_ang_d(p->rays) <= 45)
+	// 	slice->side = 3;
 		}
 		printf("\n");
 		i++;
 	}
+}
+
+void	free_rays_info(t_rays_info *info)
+{
+	t_rays_info	*tmp;
+	t_rays_info	*tmp_2;
+
+	tmp = info;
+	// printf("inof %p\n", &info);
+	while (tmp->prev != NULL)
+		tmp = tmp->prev;
+	while (tmp != NULL)
+	{
+	// printf("tmp-> %f\n",tmp->wich_rays);
+		tmp_2 = tmp->next;
+		free(tmp);
+		tmp = tmp_2;
+	}
+	tmp = NULL;
+	// free (tmp_2);
+	free(tmp);
 }

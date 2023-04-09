@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   motion_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:33:11 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/22 19:30:29 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/09 16:35:27 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,22 @@ void	motion_control(t_game *gs, int keycode)
 
 void	close_window(t_game *g)
 {
+	int	i;
+
+	i = 0;
+	if (g->pos != NULL)
+	{
+		free_rays_info(g->pos->info);
+		printf("g->info %f\n", g->pos->info->wich_rays);
+		while(i++ < 10)
+			printf("wwwwwwwwwww\n");
+		g->pos->info = NULL;
+		free(g->pos);
+		g->pos = NULL;
+	}
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_display(g->mlx);
+	printf("closed\n");
 }
 
 int	keyboard_ctl_on(int keycode, t_game *gs)
@@ -193,7 +207,10 @@ int	get_keyboard_event(t_game *g)
 	if (g->keycode_l == 1)
 		motion_control(g, 5);
 	render_next_frame(g);
-	//render_image(g);
+	free_rays_info(g->pos->info);
+	free (g->pos);
+	g->pos = NULL;
+	// render_image(g);
 	return (0);
 }
 
