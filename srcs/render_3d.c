@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_3d.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/31 13:47:19 by bgrulois         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   render_3d.c                                        :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
+// /*   Updated: 2023/04/06 16:36:17 by leina            ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -20,42 +20,30 @@ int	eval_t_y(int y, int ws, double ratio)
 	return ((int)t_y);
 }
 
+
 int	fix_ang_d(int a)
 {
-	//printf("a = %d", a);
+	printf("a = %d", a);
 	if (a > 359)
 		a -= 360;
 	if (a < 0)
 		a += 360;
-	//printf("a = %d", a);
+	printf("a = %d", a);
 	return (a);
 }
 
-t_data	*eval_tx_img(t_game *g)
-{
-	printf("direct= %f\n", g->p->direction);
-	if (fix_ang(g->p->direction) > 45 && fix_ang(g->p->direction) <= 135)
-		return (&g->t->no_t);
-	if (fix_ang(g->p->direction) > 135 && fix_ang(g->p->direction) <= 225)
-		return (&g->t->we_t);
-	if (fix_ang(g->p->direction) > 225 && fix_ang(g->p->direction) <= 315)
-		return (&g->t->so_t);
-	if (fix_ang_d(g->p->direction) > 315 && fix_ang_d(g->p->direction) <= 45)
-		return (&g->t->ea_t);
-	return (NULL);
-}
 
-
-t_data	*eval_tx_side(t_game *g, t_slice *slice)
+t_data	*eval_tx_img(t_game *g, t_slice *slice)
 {
+	// printf("direct= %f\n", g->p->direction);
 	if (slice->side == 0)
 		return (&g->t->no_t);
 	if (slice->side == 1)
-		return (&g->t->we_t);
-	if (slice->side == 2)
 		return (&g->t->so_t);
-	if (slice->side == 3)
+	if (slice->side == 2)
 		return (&g->t->ea_t);
+	if (slice->side == 3)
+		return (&g->t->we_t);
 	return (NULL);
 }
 
@@ -68,16 +56,9 @@ void	draw_slice(t_game *g, t_slice *slice)
 
 	y = 0;
 	ratio = (slice->wall_end - slice->wall_start) / TILE_SIZE_F;
-	//if (slice->side == 0)
-	//	tx = &g->t->no_t;
-	//else if (slice->side == 1)
-	//	tx = &g->t->so_t;
-	tx = eval_tx_side(g, slice);
+	tx = eval_tx_img(g, slice);
 	if (ratio <= 0.0)
 		ratio = 0.01;
-	/*if (ratio < 1.0 && ratio > 0.0)
-		ratio = 1.0 / ratio;*/
-	//printf("\n$$$$$$$$$$$$$$$$$$\nTXT_XPOS(px) = %f\nRATIO = %f\n$$$$$$$$$$$$$$$$$$\n", slice->wall_pos, ratio);
 	while (y < RES_Y)
 	{
 		if (y < slice->wall_start)
@@ -109,41 +90,50 @@ void	init_slice(t_game *g, t_slice *slice, t_pos *p, int i)
 	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + 1);
 	slice->wall_start = RES_Y / 2 - wall_size / 2;
 	slice->wall_end = RES_Y / 2 + wall_size / 2;
-	if (p->info->side == 0)
-		slice->side = 0;
-	else
-		slice->side = 1;
-	///UN PEU NUL TT CA
-	//printf("!! side = %i!! \n", slice->side);
-
+	// if (fix_ang(p->rays) > 45 && fix_ang(p->rays) <= 135)
+	// 	slice->side = 0;
+	// else if (fix_ang(p->rays) > 135 && fix_ang(p->rays) <= 225)
+	// 	slice->side = 1;
+	// else if (fix_ang(p->rays) > 225 && fix_ang(p->rays) <= 315)
+	// 	slice->side = 2;
+	// else if (fix_ang_d(p->rays) > 315 && fix_ang_d(p->rays) <= 45)
+	// 	slice->side = 3;
+	slice->side = p->info->side;
+	// if (p->info->side == 0)
+	// 	slice->side = 0;
+	// else
+	// 	slice->side = 1;
+	// if (p->info->side)
 }
 
 void	render_image(t_game *g)
 {
 	int	i;
-	t_pos	*p;
 	t_slice	slice;
 
 	i = 0;
+	g->img->img = NULL;
 	if (g->img->img)
 		mlx_destroy_image(g->mlx, g->img->img);
 	g->img->img = mlx_new_image(g->mlx, RES_X, RES_Y);
 	g->img->addr = mlx_get_data_addr(g->img->img, &g->img->bits_per_pixel, &g->img->line_length, &g->img->endian);
-	p = insert_rays(g);
-	if (p->info->dist <= 0)
-		p->info->dist = 1;
-	init_slice(g, &slice, p, i);
+	insert_rays(g);
+	if (g->pos->info->dist <= 0)
+		g->pos->info->dist = 1;
+	init_slice(g, &slice, g->pos, i);
 	draw_slice(g, &slice);
 	while (++i < RES_X - 1)
 	{
-		if (!p->info->next)
+		if (!g->pos->info->next)
 			return ;
-		p->info = p->info->next;
-		//if (p->info->side == 0)
-		if (p->info->dist == 0)
-			p->info->dist = 1;
-		init_slice(g, &slice, p, i);
+		g->pos->info = g->pos->info->next;
+		if (g->pos->info->dist == 0)
+			g->pos->info->dist = 1;
+		init_slice(g, &slice, g->pos, i);
 		draw_slice(g, &slice);
 	}
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
+	free_rays_info(g->pos->info);
+	free (g->pos);
+	g->pos = NULL;
 }

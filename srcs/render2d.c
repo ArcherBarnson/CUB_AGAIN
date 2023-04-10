@@ -14,8 +14,6 @@
 
 int	render_next_frame(t_game *g)
 {
-	//draw_scene(g);
-	insert_rays(g);
 	render_image(g);
 	mlx_destroy_image(g->mlx, g->img->img);
 	g->img->img = NULL;

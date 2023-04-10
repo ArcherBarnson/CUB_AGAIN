@@ -135,9 +135,6 @@ void	motion_control(t_game *gs, int keycode)
 void	close_window(t_game *g)
 {
 	exit_game(g);
-	mlx_destroy_window(g->mlx, g->win);
-	mlx_destroy_display(g->mlx);
-	free(g);
 }
 
 int	keyboard_ctl_on(int keycode, t_game *gs)
@@ -202,6 +199,7 @@ void	mlx_hooks(t_game *g)
 {
 	mlx_hook(g->win, 2, 1L<<0, keyboard_ctl_on, g);
 	mlx_hook(g->win, 3, 1L<<1, keyboard_ctl_off, g);
+	mlx_hook(g->win, 33, 1L << 17, (void *)exit_game, g);
 	mlx_loop_hook(g->mlx, get_keyboard_event, g);
 	return ;
 }

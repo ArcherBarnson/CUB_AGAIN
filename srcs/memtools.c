@@ -14,14 +14,29 @@
 
 void	exit_game(t_game *g)
 {
+	free(g->m->no);
+	free(g->m->so);
+	free(g->m->we);
+	free(g->m->ea);
+	free(g->m->f);
+	free(g->m->c);
+	free_tab(g->m->map);
 	free(g->m);
+	if (g->img->img)
+		mlx_destroy_image(g->mlx, g->img->img);
 	mlx_destroy_image(g->mlx, g->t->no_t.img);
 	mlx_destroy_image(g->mlx, g->t->so_t.img);
-	mlx_destroy_image(g->mlx, g->t->ea_t.img);
 	mlx_destroy_image(g->mlx, g->t->we_t.img);
+	mlx_destroy_image(g->mlx, g->t->ea_t.img);
+	mlx_destroy_window(g->mlx, g->win);
+	mlx_destroy_display(g->mlx);
 	free(g->t);
 	free(g->p);
-	//mlx_destroy_image(g->mlx, g->img);
+	free(g->pos);
+	free(g->img);
+	free(g->mlx);
+	free(g);
+	exit(0);
 }
 
 void	free_floodfill(int *sc, int *bc, char **pos_map)

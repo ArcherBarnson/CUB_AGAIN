@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:06:38 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/06 16:53:01 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/09 17:25:16 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,28 +107,32 @@ void	check_vertical(t_pos *p, t_game *g) // line white -----
 		rays_dist_verti(p, g);
 }
 
-t_pos	*insert_rays(t_game *g)
+// t_pos	*insert_rays(t_game *g)
+void	insert_rays(t_game *g)
 {
-	t_pos	*p;
+	// t_pos	*p;
 
-	p = malloc(sizeof(t_pos));
-	p->info = NULL;
-	p->r = 0;
-	p->rays = fix_ang(g->p->direction + 30);
-	p->len_y = get_tab_size(g->m->map);
-	printf("begin\n");
-	while (p->r < 60)
+	g->pos = malloc(sizeof(t_pos));
+	if (!g->pos)
+		return ; 
+	g->pos->info = NULL;
+	g->pos->r = 0;
+	// printf("begin\n");
+	g->pos->rays = fix_ang(g->p->direction + 30);
+	g->pos->len_y = get_tab_size(g->m->map);
+	while (g->pos->r < 60)
 	{
-		p->dist_verti = 1000000;
-		p->dist_hori = 1000000;
-		p->tan = tan(deg_to_rad(p->rays));
-		check_horizontal(p , g);
-		check_vertical(p , g);
-		p->info = init_rays_info(p, g);
-		p->r += (float)(60 / (float)RES_X);
-		p->rays -= (float)(60 / (float)RES_X);
-		if (p->rays < 0)
-			p->rays = 359.9;
+		g->pos->dist_verti = 1000000;
+		g->pos->dist_hori = 1000000;
+		g->pos->tan = tan(deg_to_rad(g->pos->rays));
+		check_horizontal(g->pos , g);
+		check_vertical(g->pos , g);
+		g->pos->info = init_rays_info(g->pos, g);
+		g->pos->r += (float)(60 / (float)RES_X);
+		g->pos->rays -= (float)(60 / (float)RES_X);
+		if (g->pos->rays < 0)
+			g->pos->rays = 359.9;
 	}
-	return (p);
+	// printf("p %p \n", g->pos);
+	// return (g->pos);
 }
