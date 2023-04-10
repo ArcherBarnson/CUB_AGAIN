@@ -14,8 +14,8 @@
 
 char	*parse_id(char *id)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
 	char	*tmp;
 
 	i = 0;

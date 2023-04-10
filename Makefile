@@ -38,6 +38,7 @@ SRCS	= srcs/memtools.c \
 		srcs/init_player.c \
 		srcs/motion_control.c \
 		srcs/render2d.c \
+		srcs/rendering_tools.c \
 		srcs/render_3d.c \
 		srcs/raycasting.c \
 		srcs/raycasting_utils.c \

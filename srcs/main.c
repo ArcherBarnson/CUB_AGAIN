@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-t_game *init_and_parse(int ac, char *map_file)
+t_game	*init_and_parse(int ac, char *map_file)
 {
 	t_game	*g;
 

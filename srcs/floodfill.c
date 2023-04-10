@@ -70,9 +70,9 @@ int	check_limits(char **map, int *bounds_coords)
 
 int	floodfill(char **map)
 {
-	int	*start_coords;
-	int	*bounds_coords;
-	int	y_max;
+	int		*start_coords;
+	int		*bounds_coords;
+	int		y_max;
 	char	**pos_map;
 
 	y_max = 0;

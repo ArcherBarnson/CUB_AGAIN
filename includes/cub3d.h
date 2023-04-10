@@ -248,7 +248,9 @@ void	draw_tile(t_game *gd, int start_pos[2], int map_pos[2], int title_size);
 void	draw_scene(t_game *gd);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	mlx_hooks(t_game *g);
-
+int	eval_t_y(int y, int ws, double ratio);
+void	eval_t_color(t_game *g, t_slice *slice, int y, double ratio);
+t_data	*eval_tx_img(t_game *g, t_slice *slice);
 void	render_image(t_game *g);
 /////////////////////////////////////////
 

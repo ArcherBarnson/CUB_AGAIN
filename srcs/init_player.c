@@ -49,6 +49,6 @@ void	init_player_data(t_game *g)
 		}
 		j = -1;
 	}
-	g->p->speed = TILE_SIZE / 2;		//tmp arbitrary value
+	g->p->speed = SPEED;
 	return ;
 }

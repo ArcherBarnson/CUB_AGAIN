@@ -62,8 +62,6 @@ t_game	*init_failure(t_game *g)
 	return (NULL);
 }
 
-
-
 void	free_tab(char **tab)
 {
 	int	i;

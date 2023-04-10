@@ -62,8 +62,8 @@ int	*get_bounds_coords(char **map)
 
 char	**init_pos_map(char **map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**pos_map;
 
 	i = -1;
