@@ -47,7 +47,7 @@ void	init_slice(t_slice *slice, t_pos *p, int i)
 {
 	int	wall_size;
 
-	wall_size = ((RES_Y * TILE_SIZE) / p->info->dist);
+	wall_size = ((RES_X * TILE_SIZE) / p->info->dist);
 	slice->pos_x = i;
 	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + 1);
 	slice->wall_start = RES_Y / 2 - wall_size / 2;
@@ -91,7 +91,7 @@ void	render_image(t_game *g)
 	draw_slice(g, &slice);
 	draw_image(g, &slice);
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
-	//draw_scene(g);		minimap
+	//draw_scene(g);		//minimap
 	free_rays_info(g->pos->info);
 	free (g->pos);
 	g->pos = NULL;
