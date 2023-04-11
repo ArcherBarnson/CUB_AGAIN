@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/05 18:48:08 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:01:25 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ int		render_next_frame(t_game *gd);
 
 /////// RAYCASTING ////////////
 float		deg_to_rad(float	a);
-int			fix_ang(int	a);
+float			fixang(float	a);
 void		print_line(int x0, int y0, int x1, int y1, t_game *g, int color); // not important
 void		print_color_map(t_game *g, int x, int y); // not important
 void		insert_rays(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/06 16:36:17 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:00:44 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	render_next_frame(t_game *g)
 	return (1);
 }
 
-int	fix_ang_d(int a)
+int	fixang_d(int a)
 {
 	if (a > 359)
 		a -= 360;
