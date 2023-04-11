@@ -6,7 +6,7 @@
 /*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:09:05 by lcorpora          #+#    #+#             */
-/*   Updated: 2023/04/09 17:24:36 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/09 17:32:08 by leina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 	{
 		info->pos_x = p->hori_x;
 		info->pos_y = p->hori_y;
-		// info->side = 1;
 		if (p->rays < 270 && p->rays > 90)
 			info->side = 3;
 		else
@@ -55,7 +54,6 @@ void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 	{
 		info->pos_x = p->verti_x;
 		info->pos_y = p->verti_y;
-		// info->side = 0;
 		if (p->rays < 180 && p->rays > 0)
 			info->side = 0;
 		else
