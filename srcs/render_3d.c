@@ -12,6 +12,14 @@
 
 #include "../includes/cub3d.h"
 
+int	render_next_frame(t_game *g)
+{
+	render_image(g);
+	mlx_destroy_image(g->mlx, g->img->img);
+	g->img->img = NULL;
+	return (1);
+}
+
 int	fix_ang_d(int a)
 {
 	if (a > 359)
@@ -91,6 +99,7 @@ void	render_image(t_game *g)
 	draw_slice(g, &slice);
 	draw_image(g, &slice);
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
+	//draw_scene(g);		minimap
 	free_rays_info(g->pos->info);
 	free (g->pos);
 	g->pos = NULL;

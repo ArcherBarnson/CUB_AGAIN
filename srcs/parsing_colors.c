@@ -36,7 +36,8 @@ int	get_color_code(char *id, int i)
 	while (id[++i] && id[i] <= '9' && id[i] >= '0')
 		nb[++size] = id[i];
 	n = ft_atoi(nb);
-	free(nb);
+	if (nb)
+		free(nb);
 	//printf("n = %i\n", n);
 	return (n);
 }

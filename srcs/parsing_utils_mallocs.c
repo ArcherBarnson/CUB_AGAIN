@@ -68,6 +68,6 @@ char	**get_map(char **raw_map)
 		j++;
 	}
 	returnmap[j] = NULL;
-	free_tab(raw_map);
+	//free_tab(raw_map);
 	return (returnmap);
 }

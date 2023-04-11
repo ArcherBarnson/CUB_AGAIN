@@ -21,6 +21,7 @@ void	exit_game(t_game *g)
 	free(g->m->f);
 	free(g->m->c);
 	free_tab(g->m->map);
+	free_tab(g->raw_map);
 	free(g->m);
 	if (g->img->img)
 		mlx_destroy_image(g->mlx, g->img->img);
@@ -46,18 +47,33 @@ void	free_floodfill(int *sc, int *bc, char **pos_map)
 	free_tab(pos_map);
 }
 
+void	free_map_ids(t_map *m)
+{
+	free(m->no);
+	free(m->so);
+	free(m->ea);
+	free(m->we);
+	free(m->f);
+	free(m->c);
+	free_tab(m->map);
+	free(m);
+}
+
 t_game	*init_failure(t_game *g)
 {
 	if (g != NULL)
 	{
+		if (g->raw_map != NULL)
+			free_tab(g->raw_map);
 		if (g->m != NULL)
-			free(g->m);
+			free_map_ids(g->m);
 		if (g->t != NULL)
 			free(g->t);
 		if (g->p != NULL)
 			free(g->p);
 		if (g->img != NULL)
 			free(g->img);
+		free(g);
 	}
 	return (NULL);
 }
