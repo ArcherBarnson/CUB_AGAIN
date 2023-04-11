@@ -12,14 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-int	render_next_frame(t_game *g)
-{
-	render_image(g);
-	mlx_destroy_image(g->mlx, g->img->img);
-	g->img->img = NULL;
-	return (1);
-}
-
 int	fixang_d(int a)
 {
 	if (a > 359)

@@ -14,8 +14,8 @@
 
 int	get_color_code(char *id, int i)
 {
-	int	n;
-	int	size;
+	int		n;
+	int		size;
 	char	*nb;
 
 	n = -1;
@@ -38,7 +38,6 @@ int	get_color_code(char *id, int i)
 	n = ft_atoi(nb);
 	if (nb)
 		free(nb);
-	//printf("n = %i\n", n);
 	return (n);
 }
 
@@ -62,7 +61,7 @@ int	get_hex_color(int rgb[3])
 	return (color);
 }
 
-int	get_rgb(char *tile, int color)			//modes not set (color useless for now)
+int	get_rgb(char *tile, int color)
 {
 	int	i;
 	int	n;

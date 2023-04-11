@@ -36,7 +36,9 @@ SRCS	= srcs/memtools.c \
 		srcs/parsing.c \
 		srcs/load.c \
 		srcs/init_player.c \
+		srcs/motion_ctl_utils.c \
 		srcs/motion_control.c \
+		srcs/keyboard_ctl.c \
 		srcs/rendering_tools.c \
 		srcs/render2d.c \
 		srcs/render_3d.c \

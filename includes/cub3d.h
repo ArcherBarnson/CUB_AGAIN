@@ -70,23 +70,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-/*
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}				t_color;
-*/
-/*
-typedef struct s_texture	//structure nulle jsais pas pk c'etait la cette daube
-{
-	char	*path;		//ca sert a rien ca
-	void	*img;
-	int		height;
-	int		width;
-}		t_texture;
-*/
 
 typedef struct s_player
 {
@@ -240,6 +223,8 @@ void	change_player_position(t_game *gd, int keycode);
 void	reverse_player_position(t_game *gd, int keycode);
 void	change_player_direction(t_game *gd, int keycode);
 void	motion_control(t_game *gs, int keycode);
+void	close_window(t_game *g);
+int	player_in_wall(t_game *g, double next_x, double next_y);
 int	keyboard_ctl_on(int keycode, t_game *gd);
 int	keyboard_ctl_off(int keycode, t_game *gd);
 int	get_keyboard_event(t_game *gd);

@@ -23,7 +23,8 @@ void	draw_tile(t_game *g, int start_pos[2], int map_pos[2], int tile_size)
 	color = 0;
 	if (g->m->map[map_pos[1]][map_pos[0]] == '1')
 		color = RED;
-	if (g->m->map[map_pos[1]][map_pos[0]] == '0' || g->m->map[map_pos[1]][map_pos[0]] == 'N')
+	if (g->m->map[map_pos[1]][map_pos[0]] == '0'
+		|| g->m->map[map_pos[1]][map_pos[0]] == 'N')
 		color = BLUE;
 	while (x < tile_size -1)
 	{

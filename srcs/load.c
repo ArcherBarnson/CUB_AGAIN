@@ -12,29 +12,51 @@
 
 #include "../includes/cub3d.h"
 
+void	get_textures_addr(t_game *g)
+{
+	g->t->no_t.addr = mlx_get_data_addr(g->t->no_t.img,
+			&g->t->no_t.bits_per_pixel,
+			&g->t->no_t.line_length,
+			&g->t->no_t.endian);
+	g->t->so_t.addr = mlx_get_data_addr(g->t->so_t.img,
+			&g->t->so_t.bits_per_pixel,
+			&g->t->so_t.line_length,
+			&g->t->so_t.endian);
+	g->t->ea_t.addr = mlx_get_data_addr(g->t->ea_t.img,
+			&g->t->ea_t.bits_per_pixel,
+			&g->t->ea_t.line_length,
+			&g->t->ea_t.endian);
+	g->t->we_t.addr = mlx_get_data_addr(g->t->we_t.img,
+			&g->t->we_t.bits_per_pixel,
+			&g->t->we_t.line_length,
+			&g->t->we_t.endian);
+}
+
 int	load_textures(t_game *g)
 {
 	int	a;
 	int	b;
-	printf("floor color is : %i %i %i\n", g->t->f[0], g->t->f[1], g->t->f[2]);
-	printf("ceiling color is : %i %i %i\n", g->t->c[0], g->t->c[1], g->t->c[2]);
+
 	g->t->width = TEXTURE_WIDTH;
 	g->t->height = TEXTURE_HEIGHT;
 	g->t->no_t.img = mlx_xpm_file_to_image(g->mlx, g->m->no, &a, &b);
 	if (a != TEXTURE_WIDTH || b != TEXTURE_HEIGHT || !g->t->no_t.img)
 		return (1);
-	g->t->so_t.img = mlx_xpm_file_to_image(g->mlx, g->m->so, &g->t->width, &g->t->height);
+	g->t->so_t.img = mlx_xpm_file_to_image(g->mlx,
+			g->m->so, &g->t->width,
+			&g->t->height);
 	if (a != TEXTURE_WIDTH || b != TEXTURE_HEIGHT || !g->t->no_t.img)
 		return (1);
-	g->t->ea_t.img = mlx_xpm_file_to_image(g->mlx, g->m->ea, &g->t->width, &g->t->height);
+	g->t->ea_t.img = mlx_xpm_file_to_image(g->mlx,
+			g->m->ea, &g->t->width,
+			&g->t->height);
 	if (a != TEXTURE_WIDTH || b != TEXTURE_HEIGHT || !g->t->no_t.img)
 		return (1);
-	g->t->we_t.img = mlx_xpm_file_to_image(g->mlx, g->m->we, &g->t->width, &g->t->height);
+	g->t->we_t.img = mlx_xpm_file_to_image(g->mlx,
+			g->m->we, &g->t->width,
+			&g->t->height);
 	if (a != TEXTURE_WIDTH || b != TEXTURE_HEIGHT || !g->t->no_t.img)
 		return (1);
-	g->t->no_t.addr = mlx_get_data_addr(g->t->no_t.img, &g->t->no_t.bits_per_pixel, &g->t->no_t.line_length, &g->t->no_t.endian);
-	g->t->so_t.addr = mlx_get_data_addr(g->t->so_t.img, &g->t->so_t.bits_per_pixel, &g->t->so_t.line_length, &g->t->so_t.endian);
-	g->t->ea_t.addr = mlx_get_data_addr(g->t->ea_t.img, &g->t->ea_t.bits_per_pixel, &g->t->ea_t.line_length, &g->t->ea_t.endian);
-	g->t->we_t.addr = mlx_get_data_addr(g->t->we_t.img, &g->t->we_t.bits_per_pixel, &g->t->we_t.line_length, &g->t->we_t.endian);
+	get_textures_addr(g);
 	return (0);
 }

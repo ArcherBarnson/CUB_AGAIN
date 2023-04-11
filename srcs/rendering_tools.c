@@ -8,7 +8,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-
 int	eval_t_y(int y, int ws, double ratio)
 {
 	double	t_y;

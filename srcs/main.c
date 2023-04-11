@@ -12,6 +12,19 @@
 
 #include "../includes/cub3d.h"
 
+int	render_next_frame(t_game *g)
+{
+	render_image(g);
+	mlx_destroy_image(g->mlx, g->img->img);
+	g->img->img = NULL;
+	return (1);
+}
+
+void	close_window(t_game *g)
+{
+	exit_game(g);
+}
+
 t_game	*init_and_parse(int ac, char *map_file)
 {
 	t_game	*g;
