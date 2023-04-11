@@ -56,7 +56,7 @@
 # define AC_CYAN "\x1b[36m"
 # define AC_WHITE "\x1b[37m"
 # define AC_NORMAL "\x1b[m"
-# define RES_X 1080
+# define RES_X 720 
 # define RES_Y 720
 # define SPEED 6
 
