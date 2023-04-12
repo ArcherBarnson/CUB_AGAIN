@@ -21,7 +21,7 @@ int	get_color_code(char *id, int i)
 	n = -1;
 	size = 0;
 	nb = NULL;
-	if (id[i] > '9' || id[i] < '0')
+	if (!id || id[i] == '\0' || id[i] > '9' || id[i] < '0')
 		return (-1);
 	while (id[size + i] && id[size + i] <= '9' && id[size + i] >= '0')
 		size++;
@@ -43,6 +43,8 @@ int	get_color_code(char *id, int i)
 
 int	skip_color_code(char *tile, int i)
 {
+	if (!tile || !tile[i])
+		return (i);
 	while (tile[i] <= '9' && tile[i] >= '0')
 		i++;
 	while (tile[i] == ',' && (tile[i] > '9' || tile[i] < '0'))
@@ -57,7 +59,6 @@ int	get_hex_color(int rgb[3])
 	int	color;
 
 	color = (rgb[0] << 16) + (rgb[1] << 8) + (rgb[2]);
-	printf("COLOR = %x\n", color);
 	return (color);
 }
 
@@ -72,18 +73,18 @@ int	get_rgb(char *tile, int color)
 		i++;
 	while (tile && tile[i] && tile[i] == ' ')
 		i++;
-	if (color == 2)
+	if (color == 2 && tile && tile[i])
 	{
 		i = skip_color_code(tile, i);
 		i = skip_color_code(tile, i);
 		n = get_color_code(tile, i);
 	}
-	if (color == 1)
+	if (color == 1 && tile && tile[i])
 	{
 		i = skip_color_code(tile, i);
 		n = get_color_code(tile, i);
 	}
-	if (color == 0)
+	if (color == 0 && tile && tile[i])
 		n = get_color_code(tile, i);
 	if (n < 0 || n > 255)
 		return (-1);

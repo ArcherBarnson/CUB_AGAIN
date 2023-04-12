@@ -73,6 +73,8 @@ t_game	*init_failure(t_game *g)
 			free(g->p);
 		if (g->img != NULL)
 			free(g->img);
+		if (g->mlx)
+			free(g->mlx);
 		free(g);
 	}
 	return (NULL);

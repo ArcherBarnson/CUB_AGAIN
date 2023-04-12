@@ -37,6 +37,8 @@ int	load_textures(t_game *g)
 	int	a;
 	int	b;
 
+	a = 0;
+	b = 0;
 	g->t->width = TEXTURE_WIDTH;
 	g->t->height = TEXTURE_HEIGHT;
 	g->t->no_t.img = mlx_xpm_file_to_image(g->mlx, g->m->no, &a, &b);

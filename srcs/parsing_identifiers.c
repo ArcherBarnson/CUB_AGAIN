@@ -59,11 +59,23 @@ int	check_id_validity(t_game *g)
 	if (!g->m->we)
 		return (1);
 	g->t->f[0] = get_rgb(g->m->f, 0);
+	if (g->t->f[0] == -1)
+		return (1);
 	g->t->f[1] = get_rgb(g->m->f, 1);
+	if (g->t->f[1] == -1)
+		return (1);
 	g->t->f[2] = get_rgb(g->m->f, 2);
+	if (g->t->f[2] == -1)
+		return (1);
 	g->t->c[0] = get_rgb(g->m->c, 0);
+	if (g->t->c[0] == -1)
+		return (1);
 	g->t->c[1] = get_rgb(g->m->c, 1);
+	if (g->t->c[1] == -1)
+		return (1);
 	g->t->c[2] = get_rgb(g->m->c, 2);
+	if (g->t->c[2] == -1)
+		return (1);
 	if (g->t->f[0] == -1 || g->t->f[1] == -1 || g->t->f[2] == -1
 		|| g->t->c[0] == -1 || g->t->c[1] == -1 || g->t->c[2] == -1)
 		return (1);
@@ -75,20 +87,22 @@ int	get_id(t_game *g, int i)
 	if (!g->raw_map || !g->raw_map[i])
 		return (-1);
 	if (g->raw_map[i][0] == 'N' && g->raw_map[i][1] == 'O'
-		&& g->raw_map[i][2] == ' ')
+		&& g->raw_map[i][2] == ' ' && g->m->no == NULL)
 		g->m->no = ft_strdup(g->raw_map[i]);
 	if (g->raw_map[i][0] == 'S' && g->raw_map[i][1] == 'O'
-		&& g->raw_map[i][2] == ' ')
+		&& g->raw_map[i][2] == ' ' && g->m->so == NULL)
 		g->m->so = ft_strdup(g->raw_map[i]);
 	if (g->raw_map[i][0] == 'E' && g->raw_map[i][1] == 'A'
-		&& g->raw_map[i][2] == ' ')
+		&& g->raw_map[i][2] == ' ' && g->m->ea == NULL)
 		g->m->ea = ft_strdup(g->raw_map[i]);
 	if (g->raw_map[i][0] == 'W' && g->raw_map[i][1] == 'E'
-		&& g->raw_map[i][2] == ' ')
+		&& g->raw_map[i][2] == ' ' && g->m->we == NULL)
 		g->m->we = ft_strdup(g->raw_map[i]);
-	if (g->raw_map[i][0] == 'F' && g->raw_map[i][1] == ' ')
+	if (g->raw_map[i][0] == 'F' && g->raw_map[i][1] == ' '
+		&& g->m->f == NULL)
 		g->m->f = ft_strdup(g->raw_map[i]);
-	if (g->raw_map[i][0] == 'C' && g->raw_map[i][1] == ' ')
+	if (g->raw_map[i][0] == 'C' && g->raw_map[i][1] == ' '
+		&& g->m->c == NULL)
 		g->m->c = ft_strdup(g->raw_map[i]);
 	i++;
 	while (g->raw_map[i] && g->raw_map[i][0] == '\n' && g->raw_map[i] != NULL)

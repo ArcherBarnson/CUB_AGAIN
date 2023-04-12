@@ -32,6 +32,12 @@ int	init_substructs(t_game *g)
 	g->t = malloc(sizeof(t_textures));
 	if (!g->t)
 		return (0);
+	g->t->f[0] = -1;
+	g->t->f[1] = -1;
+	g->t->f[2] = -1;
+	g->t->c[0] = -1;
+	g->t->c[1] = -1;
+	g->t->c[2] = -1;
 	g->p = malloc(sizeof(t_player));
 	if (!g->p)
 		return (0);
