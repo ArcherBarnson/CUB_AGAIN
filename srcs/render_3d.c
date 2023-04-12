@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leina <leina@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/11 13:00:44 by leina            ###   ########.fr       */
+/*   Updated: 2023/04/12 16:54:21 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	fixang_d(int a)
-{
-	if (a > 359)
-		a -= 360;
-	if (a < 0)
-		a += 360;
-	return (a);
-}
 
 void	draw_slice(t_game *g, t_slice *slice)
 {
@@ -60,7 +51,7 @@ void	draw_image(t_game *g, t_slice *slice)
 	int	i;
 
 	i = 0;
-	while (++i < RES_X - 1)
+	while (++i < RES_X)
 	{
 		if (!g->pos->info->next)
 			return ;
@@ -91,7 +82,6 @@ void	render_image(t_game *g)
 	draw_slice(g, &slice);
 	draw_image(g, &slice);
 	mlx_put_image_to_window(g->mlx, g->win, g->img->img, 0, 0);
-	//draw_scene(g);		//minimap
 	free_rays_info(g->pos->info);
 	free (g->pos);
 	g->pos = NULL;

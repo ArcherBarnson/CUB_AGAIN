@@ -6,7 +6,7 @@
 /*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:48 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/03/02 15:27:56 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:55:23 by bgrulois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ t_game	*init_failure(t_game *g)
 		if (g->img != NULL)
 			free(g->img);
 		if (g->mlx)
+		{
+			mlx_destroy_display(g->mlx);
 			free(g->mlx);
+		}
 		free(g);
+		g = NULL;
 	}
 	return (NULL);
 }

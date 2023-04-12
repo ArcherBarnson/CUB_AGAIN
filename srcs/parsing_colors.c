@@ -21,7 +21,7 @@ int	get_color_code(char *id, int i)
 	n = -1;
 	size = 0;
 	nb = NULL;
-	if (!id || id[i] == '\0' || id[i] > '9' || id[i] < '0')
+	if (i < 0 || !id || id[i] == '\0' || id[i] > '9' || id[i] < '0')
 		return (-1);
 	while (id[size + i] && id[size + i] <= '9' && id[size + i] >= '0')
 		size++;

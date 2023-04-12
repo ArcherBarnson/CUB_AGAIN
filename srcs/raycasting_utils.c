@@ -12,12 +12,12 @@
 
 #include "../includes/cub3d.h"
 
-float	deg_to_rad(float a)
+double	deg_to_rad(double a)
 {
 	return ((a * M_PI) / 180.0);
 }
 
-float	fixang(float a)
+double	fixang(double a)
 {
 	if (a > 359)
 		a -= 360;
@@ -28,7 +28,7 @@ float	fixang(float a)
 
 void	smallest_dist(t_pos *p, t_rays_info *info, t_game *g)
 {
-	float	r;
+	double	r;
 
 	r = fixang(g->p->direction - p->rays);
 	if (p->dist_verti > p->dist_hori)

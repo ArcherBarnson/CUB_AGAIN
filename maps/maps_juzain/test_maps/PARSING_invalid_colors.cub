@@ -3,7 +3,7 @@ SO ./srcs/textures/hello-everything.xpm
 EA ./srcs/textures/damogen.xpm
 WE ./srcs/textures/hardnormaldaddy.xpm
 
-F 88,  ,185,71
+F 88,  ,185,71, 34, 4567, 5678
 C 126,201,237
 
 11111111111111

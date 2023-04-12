@@ -16,12 +16,12 @@ void	rays_dist_hori(t_pos *p, t_game *g)
 {
 	while (1 && p->hori_x >= 0 && p->hori_y >= 0)
 	{
-		p->map_x = (p->hori_x / TILE_SIZE);
-		p->map_y = (p->hori_y / TILE_SIZE);
+		p->map_x = (p->hori_x / TILE_SIZE_F);
+		p->map_y = (p->hori_y / TILE_SIZE_F);
 		p->map_p = p->map_x * 10 + p->map_y;
-		if (p->map_p > 0 && (p->map_y >= p->len_y
-				|| (p->map_y < p->len_y && p->map_x
-					>= ft_strlen(g->m->map[p->map_y]) - 1)))
+		if (p->map_y < 0 || (p->map_p > 0 && (p->map_y >= p->len_y
+					|| (p->map_y < p->len_y && p->map_x
+						>= ft_strlen(g->m->map[p->map_y]) - 1))))
 			return ;
 		if (p->map_p >= 0 && p->map_x < ft_strlen(g->m->map[p->map_y]) - 1
 			&& p->map_y <= p->len_y && g->m->map[p->map_y][p->map_x] == 49)
@@ -122,8 +122,8 @@ void	insert_rays(t_game *g)
 		check_horizontal(g->pos, g);
 		check_vertical(g->pos, g);
 		g->pos->info = init_rays_info(g->pos, g);
-		g->pos->r += (float)(60 / (float)RES_X);
-		g->pos->rays -= (float)(60 / (float)RES_X);
+		g->pos->r += (double)(60 / (double)RES_X);
+		g->pos->rays -= (double)(60 / (double)RES_X);
 		if (g->pos->rays < 0)
 			g->pos->rays = 359.9;
 	}
