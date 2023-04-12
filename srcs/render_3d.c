@@ -6,7 +6,7 @@
 /*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/12 17:52:10 by lcorpora         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:43:28 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	init_slice(t_slice *slice, t_pos *p, int i)
 
 	wall_size = ((RES_Y * TILE_SIZE) / (p->info->dist)) / ((double)RES_Y/(double)RES_X);
 	slice->pos_x = i;
+	printf("ws %f", wall_size);
 	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + 1);
-	slice->wall_start = RES_Y / 2 - wall_size / 2;
-	slice->wall_end = RES_Y / 2 + wall_size / 2;
+	slice->wall_start = (RES_Y / 2 - wall_size / 2);
+	slice->wall_end = (RES_Y / 2 + wall_size / 2);
 	slice->side = p->info->side;
 }
 
