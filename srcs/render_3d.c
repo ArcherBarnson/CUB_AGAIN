@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:24:36 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/12 16:54:21 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:52:10 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_slice(t_game *g, t_slice *slice)
 	double	ratio;
 
 	y = 0;
-	ratio = (slice->wall_end - slice->wall_start) / TILE_SIZE_F;
+	ratio = ((slice->wall_end - slice->wall_start) / TILE_SIZE_F);
 	if (ratio <= 0.0)
 		ratio = 0.01;
 	while (y < RES_Y)
@@ -36,9 +36,9 @@ void	draw_slice(t_game *g, t_slice *slice)
 
 void	init_slice(t_slice *slice, t_pos *p, int i)
 {
-	int	wall_size;
+	double	wall_size;
 
-	wall_size = ((RES_X * TILE_SIZE) / p->info->dist);
+	wall_size = ((RES_Y * TILE_SIZE) / (p->info->dist)) / ((double)RES_Y/(double)RES_X);
 	slice->pos_x = i;
 	slice->wall_pos = ((p->info->pos_x + p->info->pos_y) % TILE_SIZE + 1);
 	slice->wall_start = RES_Y / 2 - wall_size / 2;

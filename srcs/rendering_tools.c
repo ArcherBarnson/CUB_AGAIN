@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:23:38 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/12 16:24:04 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:18:36 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ void	eval_t_color(t_game *g, t_slice *slice, int y, double ratio)
 	i = 0;
 	while (i < 4)
 	{
-		if (y == 0)
-		{
+		// if (y == 0)
+		// {
 			g->img->addr[y * g->img->line_length
 				+ slice->pos_x * 4 + i]
 				= tx->addr[(eval_t_y(y, slice->wall_start, ratio))
 				* g->t->so_t.line_length
 				+ (int)(slice->wall_pos) * 4 + i];
-		}
-		else
-		{
-			g->img->addr[y * g->img->line_length
-				+ slice->pos_x * 4 + i]
-				= tx->addr[(eval_t_y(y - (1 * ratio), slice->wall_start, ratio))
-				* g->t->so_t.line_length
-				+ (int)(slice->wall_pos) * 4 + i];
-		}
+		// }
+		// else
+		// {
+		// 	g->img->addr[y * g->img->line_length
+		// 		+ slice->pos_x * 4 + i]
+		// 		= tx->addr[(eval_t_y(y - (1 * ratio), slice->wall_start, ratio))
+		// 		* g->t->so_t.line_length
+		// 		+ (int)(slice->wall_pos) * 4 + i];
+		// }
 		i++;
 	}
 }

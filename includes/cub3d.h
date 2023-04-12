@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrulois <bgrulois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcorpora <lcorpora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:00:17 by bgrulois          #+#    #+#             */
-/*   Updated: 2023/04/12 16:51:52 by bgrulois         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:39:33 by lcorpora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define AC_WHITE "\x1b[37m"
 # define AC_NORMAL "\x1b[m"
 # define RES_X 1080
-# define RES_Y 720
+# define RES_Y 320
 # define SPEED 6
 
 # include "get_next_line.h"
